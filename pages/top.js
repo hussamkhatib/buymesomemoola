@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../lib/mongodb";
+import { connectToDatabase } from '../lib/mongodb';
 
 export default function Top({ movies }) {
   return (
@@ -24,7 +24,7 @@ export async function getStaticProps() {
   const { db } = await connectToDatabase();
 
   const movies = await db
-    .collection("movies")
+    .collection('movies')
     .find({})
     .sort({ metacritic: -1 })
     .limit(100)
