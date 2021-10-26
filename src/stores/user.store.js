@@ -16,6 +16,11 @@ export const useUser = create((set) => ({
   celoBalance: 0,
   cUSDBalance: 0,
   error: null,
+  isRegisteredUser: false,
+  toggleRegisteredUser: () =>
+    set((state) => ({
+      isRegisteredUser: !state.isRegisteredUser,
+    })),
   connectCeloWallet: async () => {
     if (window.celo) {
       try {
@@ -29,6 +34,15 @@ export const useUser = create((set) => ({
 
         kit.defaultAccount = user_address;
         set({ address: user_address, kit });
+        const res = await fetch(`/api/users/${user_address}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const { data, error } = await res.json();
+        if (!data) set({ isRegisteredUser: true });
+        else set({ error: `⚠️ ${error}.` });
       } catch (error) {
         set({ error: `⚠️ ${error}.` });
       }
