@@ -1,17 +1,15 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', '.src/components/**/*.{js,ts,jsx,tsx}'],
+  purge: ['./pages/**/*.jsx', '.src/components/**/*.jsx'],
   darkMode: false,
   theme: {
     extend: {
       gridTemplateRows: {
-        'layout': 'max-content 1fr max-content',
+        layout: 'max-content 1fr max-content',
       },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [
-    require('daisyui'),
-  ],
-}
+  plugins: [require('daisyui')],
+};
