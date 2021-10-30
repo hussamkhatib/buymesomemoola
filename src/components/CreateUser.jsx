@@ -26,7 +26,7 @@ function CreateUser() {
         'Content-Type': 'application/json',
       },
     });
-    const { data, error } = await isNameExists.json();
+    const { data } = await isNameExists.json();
     if(data){
       toast.error('user exist already', toastProps);
     }
@@ -40,7 +40,7 @@ function CreateUser() {
           name,address
         }),
       });
-      const { data:d, error:err } = await res.json();
+      await res.json();
     }
     toggleRegisteredUser() 
   }
