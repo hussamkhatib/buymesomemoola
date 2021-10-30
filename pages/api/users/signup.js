@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import { connectToDatabase } from '../../../lib/mongodb';
+import connectToDatabase from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   const { db } = await connectToDatabase();
@@ -10,7 +10,6 @@ export default async function handler(req, res) {
   } = req;
 
   if (method === 'POST') {
-    console.log('Adding user to database', name, address);
     await db.collection('users').findOneAndUpdate(
       { address },
       {
