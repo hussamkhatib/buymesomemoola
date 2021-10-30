@@ -1,25 +1,48 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 import PopUp from './PopUp'
 import { useUser } from '../stores/user.store'
+
+const toastProps = {
+  position: "bottom-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  }
 
 function CreateUser() {
   const address = useUser((state) => state.address);
   const toggleRegisteredUser = useUser(state => state.toggleRegisteredUser)
+  const [name,setName] = useState('')
 
   const registerUser = async  () => {
-    const res = await fetch(`/api/users/${address}`, {
-      method: 'POST',
+    const isNameExists = await fetch(`/api/users/name/${name}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: 'Hussam',
-        address,
-      }),
     });
-    const { data, error } = await res.json();
-   toggleRegisteredUser() 
+    const { data, error } = await isNameExists.json();
+    if(data){
+      toast.error('user exist already', toastProps);
+    }
+    else{
+      const res = await fetch('/api/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,address
+        }),
+      });
+      const { data:d, error:err } = await res.json();
+    }
+    toggleRegisteredUser() 
   }
 
     return (
@@ -29,7 +52,14 @@ function CreateUser() {
               <label className="label">
                 <span className="label-text">What should we call you</span>
               </label> 
-              <input type="text" placeholder="name" className="input input-ghost"/>
+              <input 
+              type="text" 
+              placeholder="name" 
+              className="input input-ghost"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+              />
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

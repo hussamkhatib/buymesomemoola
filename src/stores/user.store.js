@@ -34,7 +34,7 @@ export const useUser = create((set) => ({
 
         kit.defaultAccount = user_address;
         set({ address: user_address, kit });
-        const res = await fetch(`/api/users/${user_address}`, {
+        const res = await fetch(`/api/users/address/${user_address}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
