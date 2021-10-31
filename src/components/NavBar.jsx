@@ -1,13 +1,19 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable camelcase */
 import React from 'react';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useUser } from '../stores/user.store'
 import CreateUser from './CreateUser';
 
 function NavBar() {
+  const router = useRouter()
   const address = useUser(state => state.address)
   const isRegisteredUser = useUser(state => state.isRegisteredUser)
   const connectCeloWallet = useUser(state => state.connectCeloWallet)
 
+  
   return (
     <>
       <nav className="navbar mb-2 shadow-lg bg-neutral text-neutral-content ">
@@ -31,9 +37,18 @@ function NavBar() {
         <div className="flex-1 px-2 mx-2">
           <span className="text-lg font-bold">Buy me some Moola</span>
         </div>
-        {address ? <div>{address} </div>:  <div className="flex-none">
-          <button onClick={connectCeloWallet} type='button' className="btn btn-square btn-ghost">connect</button>
-        </div>}
+        {address && router.pathname === '/'?
+         <Link href='/dashboard'>
+            <a>
+              Go to Dashboard
+            </a>
+          </Link>
+         :  address ?
+        null :
+            <div className="flex-none">
+              <button onClick={connectCeloWallet} type='button' className="btn btn-square btn-ghost">connect</button>
+            </div> 
+        }
 
       </nav>
       {isRegisteredUser? <CreateUser /> : null}
