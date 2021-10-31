@@ -1,9 +1,12 @@
 import React from 'react'
+import Checklist from './Checklist'
+import Overview from './Overview'
 
 function Dashboard() {
     return (
         <div>
-            Dashboard comp
+            <Overview/>
+            <Checklist />
         </div>
     )
 }
