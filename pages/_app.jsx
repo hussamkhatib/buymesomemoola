@@ -10,20 +10,21 @@ import UserLayout from '../src/components/private/UserLayout'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-  const publicRoutes = ['/','/explore-creators']
-  if(publicRoutes.includes(router.pathname)){
+  const privateRoutes = ['/dashboard','/support']
+  if(privateRoutes.includes(router.pathname)){
+    return (
+      <UserLayout>
+        <Component {...pageProps} />
+      </UserLayout> 
+    )
+  }
     return (
       <Layout>
         <Component {...pageProps} />
       </Layout>
     );
   }
-    return (
-      <UserLayout>
-        <Component {...pageProps} />
-      </UserLayout> 
-    )
-}
+
 
 export default MyApp;
 
