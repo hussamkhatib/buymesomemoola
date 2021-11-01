@@ -10,7 +10,8 @@ import UserLayout from '../src/components/private/UserLayout'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-  if(router.pathname === '/'){
+  const publicRoutes = ['/','/explore-creators']
+  if(publicRoutes.includes(router.pathname)){
     return (
       <Layout>
         <Component {...pageProps} />

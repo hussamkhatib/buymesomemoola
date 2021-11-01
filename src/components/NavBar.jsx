@@ -17,7 +17,7 @@ function NavBar() {
   return (
     <>
       <nav className="navbar mb-2 shadow-lg bg-neutral text-neutral-content ">
-        <div className="flex-none">
+        <div className="flex-none sm:hidden">
           <button type='button' className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,12 @@ function NavBar() {
           </button>
         </div>
         <div className="flex-1 px-2 mx-2">
-          <span className="text-lg font-bold">Buy me some Moola</span>
+          <h1 className="text-lg font-bold mx-2">Buy me some Moola</h1>
+          <Link href='/explore-creators'>
+            <a className="ml-6">
+              Explore creators
+            </a>
+          </Link>
         </div>
         {address && router.pathname === '/'?
          <Link href='/dashboard'>
