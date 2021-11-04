@@ -1,7 +1,11 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable camelcase */
 import create from 'zustand';
 import Web3 from 'web3';
 import { newKitFromWeb3 } from '@celo/contractkit';
+import BigNumber from 'bignumber.js';
+
+const ERC20_DECIMALS = 18;
 
 export const useStore = create((set) => ({
   bears: 0,
@@ -33,7 +37,11 @@ export const useUser = create((set) => ({
         const user_address = accounts[0];
 
         kit.defaultAccount = user_address;
-        set({ address: user_address, kit });
+
+        const bal = await getBalance(kit, user_address);
+        const { celoBalance, cUSDBalance } = bal;
+        set({ address: user_address, kit, celoBalance, cUSDBalance });
+
         const res = await fetch(`/api/users/address/${user_address}`, {
           method: 'GET',
           headers: {
@@ -49,3 +57,20 @@ export const useUser = create((set) => ({
     }
   },
 }));
+
+async function getBalance(kit, address) {
+  const balance = await kit.getTotalBalance(address);
+  const celoBalance = balance.CELO.shiftedBy(-ERC20_DECIMALS).toFixed(2);
+  const cUSDBalance = balance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2);
+  return { celoBalance, cUSDBalance };
+}
+
+/* async function transferMoola(kit,address) {
+  const oneGold = kit.web3.utils.toWei('1', 'ether')
+  const tx = await goldtoken.transfer(address, oneGold).send({
+    from: myAddress,  
+  })
+
+  const hash = await tx.getHash()
+  const receipt = await tx.waitReceipt()
+} */
