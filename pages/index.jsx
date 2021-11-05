@@ -1,13 +1,14 @@
 import React from 'react';
 import { useUser } from '../src/stores/user.store';
+import Hero from '../src/components/home/Hero'
 
-export default function Home() {
+export default function HomePage() {
   const address = useUser((state) => state.address);
   const error = useUser((state) => state.error);
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <Hero />
       <p>user address {address || 'not connected yet'}</p>
       {error}
     </div>

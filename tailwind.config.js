@@ -6,6 +6,9 @@ module.exports = {
       gridTemplateRows: {
         layout: 'max-content 1fr max-content',
       },
+      height: {
+        hero: '32rem',
+      },
     },
   },
   variants: {
