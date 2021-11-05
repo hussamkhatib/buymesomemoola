@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useUser } from '../stores/user.store'
@@ -12,7 +12,10 @@ function NavBar() {
   const address = useUser(state => state.address)
   const isRegisteredUser = useUser(state => state.isRegisteredUser)
   const connectCeloWallet = useUser(state => state.connectCeloWallet)
-
+  
+  useEffect(()=> {
+    connectCeloWallet()
+  },[])
   
   return (
     <>
