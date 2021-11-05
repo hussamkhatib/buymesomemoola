@@ -8,6 +8,7 @@ module.exports = {
       },
       height: {
         hero: '32rem',
+        creatorCard: 'calc(100% - 200px)',
       },
     },
   },
