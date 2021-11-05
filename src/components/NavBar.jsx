@@ -38,7 +38,11 @@ function NavBar() {
           </button>
         </div>
         <div className="flex-1 px-2 mx-2">
-          <h1 className="text-lg font-bold mx-2">Buy me some Moola</h1>
+          <Link href='/'>
+            <a>
+              <h1 className="text-lg font-bold mx-2">Buy me some Moola</h1>
+            </a>
+          </Link>
           <Link href='/explore-creators'>
             <a className="ml-6">
               Explore creators
