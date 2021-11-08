@@ -13,7 +13,7 @@ function UserLayout({children}) {
                 <RouteGuard>
                 <div className='max-w-6xl mx-auto py-8 flex' >
                     <div   >
-                        <Avatar />
+                        <Avatar letter='A' size={32}  bg='bg-neutral-focus'/>
                         <UserMenu/>
                     </div>
                     <div className='px-4 md:px-8 w-full'>

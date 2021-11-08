@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Avatar() {
+function Avatar({letter,bg,size}) {
     return (
-    <div className="avatar placeholder pb-6">
-    <div className="bg-neutral-focus text-neutral-content rounded-full w-32 h-32">
-        <span className="text-3xl">K</span>
+    <div className="avatar placeholder">
+    <div className={`${bg} text-neutral-content rounded-full w-${size} h-${size}`}>
+        <span className="text-3xl">{letter}</span>
     </div>
     </div> 
     )

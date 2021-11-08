@@ -1,5 +1,6 @@
 import React from 'react'
 import connectToDatabase from '../lib/mongodb';
+import UserHead from '../src/components/profile/userHead';
 
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
@@ -23,8 +24,8 @@ export async function getServerSideProps(context) {
 
 export default function User({name}) {
     return (
-        <div>
-            User :  { name }
+        <div className='py-10'>
+          <UserHead name={name}/>            
         </div>
     )
 }
