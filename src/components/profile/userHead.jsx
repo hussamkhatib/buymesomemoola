@@ -3,6 +3,7 @@ import Avatar from '../private/Avatar'
 import PopUp from '../PopUp'
 import Celo from '../icons/Celo'
 import { useUser } from '../../stores/user.store'
+import Cancel from '../icons/Cancel'
 
 function UserHead({ name }) {
     const kit = useUser(state => state.kit)
@@ -42,7 +43,14 @@ function UserHead({ name }) {
             </div>
             {popUp ? 
             <PopUp>
-                <div className='py-10 px-4 text-neutral text-center'>
+                <div className='flex justify-end py-2 px-4'>
+                    <button className='text-neutral border-solid border-2 rounded-full'
+                     type='button' onClick={() => setPopUp(false)}>
+                         <Cancel />
+                     </button>
+                     </div>
+                
+                <div className='py-8 px-4 text-neutral text-center'>
                     <p className='text-2xl'>
                         Buy <span className='font-semibold'>{name}</span> some m<span>
                             <Celo size={24}/>la
