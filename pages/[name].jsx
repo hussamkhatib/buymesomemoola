@@ -12,9 +12,10 @@ export async function getServerSideProps(context) {
   if(userDetails)
   return {
       props: {
-        name
+        userDetails: JSON.parse(JSON.stringify(userDetails)),
       },
     }
+  
   return {
       notFound: true,
     }
@@ -22,10 +23,10 @@ export async function getServerSideProps(context) {
 
 
 
-export default function User({name}) {
+export default function User({userDetails}) {
     return (
         <div className='py-10'>
-          <UserHead name={name}/>            
+          <UserHead userDetails={userDetails}/>            
         </div>
     )
 }
