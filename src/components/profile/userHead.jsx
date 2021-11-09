@@ -2,9 +2,25 @@ import React, { useState } from 'react'
 import Avatar from '../private/Avatar'
 import PopUp from '../PopUp'
 import Celo from '../icons/Celo'
+import { useUser } from '../../stores/user.store'
 
 function UserHead({ name }) {
+    const kit = useUser(state => state.kit)
     const [popUp, setPopUp] = useState(false)
+    
+    
+    async function transferMoola() {
+        const goldtoken = await kit.contracts.getGoldToken()
+
+        const oneGold = kit.web3.utils.toWei('1', 'ether')
+        const tx = await goldtoken.transfer('0xf0B346Ae28B4bfEf5F5e9f23D963Cd5916DC8532', oneGold).send({
+        from: '0xA64FdABDfed367eaa3E138dBD87180914A08066A',  
+        })
+    
+        const hash = await tx.getHash()
+        const receipt = await tx.waitReceipt() 
+        console.log({hash,receipt})
+    } 
 
     return (
         <div className='bg-neutral-focus'>
@@ -39,11 +55,11 @@ function UserHead({ name }) {
                         </div>
                         
                         <div className="form-control p-4 w-full">
-                        <input type="number" min={0.000001} max={5000}  className="input input-bordered"/>
+                        <input type="number" min={0} max={5000}  className="input input-bordered"/>
                         </div>
 
                     </div>
-                    <button type='button' className="btn w-full rounded-full mt-4">support</button> 
+                    <button onClick={() => transferMoola()} type='button' className="btn w-full rounded-full mt-4">support</button> 
                 </div>
             </PopUp>
             : null}

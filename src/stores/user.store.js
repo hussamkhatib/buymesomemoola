@@ -64,13 +64,3 @@ async function getBalance(kit, address) {
   const cUSDBalance = balance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2);
   return { celoBalance, cUSDBalance };
 }
-
-/* async function transferMoola(kit,address) {
-  const oneGold = kit.web3.utils.toWei('1', 'ether')
-  const tx = await goldtoken.transfer(address, oneGold).send({
-    from: myAddress,  
-  })
-
-  const hash = await tx.getHash()
-  const receipt = await tx.waitReceipt()
-} */
