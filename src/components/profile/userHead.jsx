@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react'
 import Avatar from '../private/Avatar'
 import PopUp from '../PopUp'
 import Celo from '../icons/Celo'
 import { useUser } from '../../stores/user.store'
 import Cancel from '../icons/Cancel'
+/* eslint-disable react/prop-types */
 
 function UserHead({ userDetails }) {
     const kit = useUser(state => state.kit)

@@ -1,5 +1,6 @@
 import React from 'react'
 import CreatorsCard from './CreatorsCard'
+/* eslint-disable react/prop-types */
 
 function CreatorsList({creators,title}) {
     return (

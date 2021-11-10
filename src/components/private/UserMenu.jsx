@@ -16,7 +16,6 @@ const navBarList = [
 
 function UserMenu() {
     const router = useRouter()
-    console.log(router.pathname.slice(1))
     return (
         <ul>
             {

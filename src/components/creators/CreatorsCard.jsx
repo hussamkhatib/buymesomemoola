@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+/* eslint-disable react/prop-types */
 
 function CreatorsCard({name,description,supporters,picture}) {
     return (
@@ -22,3 +23,4 @@ function CreatorsCard({name,description,supporters,picture}) {
 }
 
 export default CreatorsCard
+
