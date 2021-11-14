@@ -9,14 +9,17 @@ import Cancel from '../icons/Cancel'
 
 function UserHead({ userDetails }) {
     const kit = useUser(state => state.kit)
+    const address = useUser(state => state.address)
     const [popUp, setPopUp] = useState(false)
-    
-    async function transferMoola() {
+    const [donateCelo, setDonateCelo] = useState(0)
+
+    async function transferMoola(e) {
+        e.preventDefault()
         const goldtoken = await kit.contracts.getGoldToken()
 
         const oneGold = kit.web3.utils.toWei('1', 'ether')
-        const tx = await goldtoken.transfer('0xf0B346Ae28B4bfEf5F5e9f23D963Cd5916DC8532', oneGold).send({
-        from: '0xA64FdABDfed367eaa3E138dBD87180914A08066A',  
+        const tx = await goldtoken.transfer(userDetails.address, oneGold).send({
+        from: address,  
         })
     
         const hash = await tx.getHash()
@@ -24,6 +27,10 @@ function UserHead({ userDetails }) {
         console.log({hash,receipt})
         setPopUp(false)
     } 
+
+    const handleChange = (e) => {
+        setDonateCelo(e.target.value)
+    }
 
     return (
         <div className='bg-neutral-focus'>
@@ -52,7 +59,7 @@ function UserHead({ userDetails }) {
                      </button>
                      </div>
                 
-                <div className='py-8 px-4 text-neutral text-center'>
+                <form onSubmit={transferMoola} className='py-8 px-4 text-neutral text-center'>
                     <p className='text-2xl'>
                         Buy <span className='font-semibold'>{userDetails.name}</span> some m<span>
                             <Celo size={24}/>la
@@ -65,12 +72,12 @@ function UserHead({ userDetails }) {
                         </div>
                         
                         <div className="form-control p-4 w-full">
-                        <input type="number" min={0} max={5000}  className="input input-bordered"/>
+                        <input type="number" min={0} max={5000} onChange={handleChange} value={donateCelo} className="input input-bordered"/>
                         </div>
 
                     </div>
-                    <button onClick={() => transferMoola()} type='button' className="btn w-full rounded-full mt-4">support</button> 
-                </div>
+                    <button type='submit' className="btn w-full rounded-full mt-4">support</button> 
+                </form>
             </PopUp>
             : null}
         </div>
