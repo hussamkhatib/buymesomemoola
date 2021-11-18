@@ -10,7 +10,7 @@ import UserLayout from '../src/components/private/UserLayout'
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
-  const privateRoutes = ['/dashboard','/support']
+  const privateRoutes = ['/dashboard','/support','/me']
   if(privateRoutes.includes(router.pathname)){
     return (
       <UserLayout>

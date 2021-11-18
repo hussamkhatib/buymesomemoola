@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import Nav from "../NavBar"
-import Avatar from './Avatar'
 import UserMenu from "./UserMenu"
 import RouteGuard from '../RouteGuard';
 
@@ -13,7 +12,6 @@ function UserLayout({children}) {
                 <RouteGuard>
                 <div className='max-w-6xl mx-auto py-8 flex' >
                     <div   >
-                        <Avatar letter='A' size={32}  bg='bg-neutral-focus'/>
                         <UserMenu/>
                     </div>
                     <div className='px-4 md:px-8 w-full'>

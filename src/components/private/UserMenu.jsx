@@ -7,10 +7,17 @@ const navBarList = [
     {
         key:0,
         title: 'Dashboard',
+        route: '/dashboard'
     },
     {
         key : 1,
-        title: 'Support'
+        title: 'Support',
+        route: '/support'
+    },
+    {
+        key: 2,
+        title: 'My Profile',
+        route: '/me'
     }
 ]
 
@@ -20,8 +27,8 @@ function UserMenu() {
         <ul>
             {
                 navBarList.map((item) => (
-                    <li key={item.key} className={`p-2 font-semibold ${router.pathname.slice(1) === item.title.toLowerCase() ? 'bg-neutral-focus rounded' : ''}`}>
-                        <Link href={`/${item.title.toLowerCase()}`}>
+                    <li key={item.key} className={`p-2 font-semibold ${router.pathname === item.route ? 'bg-neutral-focus rounded' : ''}`}>
+                        <Link href={`/${item.route}`}>
                             <a>
                             {item.title}
                             </a>
