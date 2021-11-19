@@ -20,7 +20,7 @@ function NavBar() {
 
   return (
     <>
-      <nav className="navbar mb-2 shadow-lg bg-neutral text-neutral-content ">
+      <nav className="navbar shadow-lg bg-neutral text-neutral-content ">
         <div className="flex-none sm:hidden">
           <button type="button" className="btn btn-square btn-ghost">
             <svg

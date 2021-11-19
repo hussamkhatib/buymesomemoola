@@ -6,12 +6,12 @@ export default async function handler(req, res) {
 
   const {
     method,
-    body: { address, userDetails },
+    body: { name, userDetails },
   } = req;
 
   if (method === 'POST') {
     await db.collection('users').findOneAndUpdate(
-      { address },
+      { name },
       {
         $set: {
           userDetails,

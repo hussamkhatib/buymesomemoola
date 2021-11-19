@@ -1,13 +1,12 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import ProfileBio from './ProfileBio';
 import ProfileHeader from './ProfileHeader';
 import Edit from '../icons/Edit';
 import EditProfile from './EditProfile';
 import PopUp from '../PopUp';
-import { useUser } from '../../stores/user.store';
 
-function Profile() {
-  const address = useUser((state) => state.address);
+function Profile({ isReadOnly, name }) {
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({
     bio: '',
@@ -25,7 +24,7 @@ function Profile() {
 
   useEffect(() => {
     const getUserDetails = async () => {
-      const res = await fetch(`/api/users/address/${address}`, {
+      const res = await fetch(`/api/users/name/${name}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +50,7 @@ function Profile() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address,
+        name,
         userDetails,
       }),
     });
@@ -62,7 +61,7 @@ function Profile() {
   }
   return (
     <div>
-      <div className="block flex justify-end pb-4">
+      <div className="block flex justify-end">
         {isEdit ? (
           <PopUp>
             <EditProfile
@@ -73,9 +72,13 @@ function Profile() {
             />
           </PopUp>
         ) : (
-          <button onClick={() => setIsEdit(true)} type="button">
-            <Edit />
-          </button>
+          <>
+            {!isReadOnly ? (
+              <button onClick={() => setIsEdit(true)} type="button">
+                <Edit />
+              </button>
+            ) : null}
+          </>
         )}
       </div>
       <ProfileHeader userDetails={userDetails} isEdit={isEdit} />
