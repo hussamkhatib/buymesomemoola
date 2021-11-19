@@ -41,9 +41,9 @@ function NavBar() {
         <div className="flex-1 px-2 mx-2">
           <Link href="/">
             <a>
-              <h1 className="text-2xl font-bold mx-2">
-                Buymesomem
-                <Celo size={16} />
+              <h1 className="text-2xl font-semibold mx-2">
+                Buy Me Some M
+                <Celo size={18} />
                 la
               </h1>
             </a>
