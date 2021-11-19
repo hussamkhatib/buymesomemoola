@@ -11,7 +11,7 @@ function ProfileHeader() {
           src="https://media.istockphoto.com/photos/falling-autumn-leaves-before-sunset-picture-id1176602671?k=20&m=1176602671&s=612x612&w=0&h=u88s3JdcrTO4y4A779WhJpX0QT9q7rNFTx5ha_fzCOs="
         />
       </div>
-      <div className="relative z-10 -mt-16 ml-4 flex">
+      <div className="relative z-10 -mt-16 ml-4 flex ">
         <Avatar bg="bg-neutral-focus" letter="H" size={32} />
         <div className="ml-2 text-white">
           <p
