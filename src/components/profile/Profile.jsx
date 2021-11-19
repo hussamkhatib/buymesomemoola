@@ -8,9 +8,8 @@ import { useUser } from '../../stores/user.store';
 
 function Profile() {
   const address = useUser((state) => state.address);
+  const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({
-    name: '',
-    followers: 0,
     bio: '',
     avatar: '',
     coverImage: '',
@@ -22,10 +21,6 @@ function Profile() {
       ...userDetails,
       [e.target.name]: e.target.value,
     });
-    // console.log({
-    //   ...userDetails,
-    //   [e.target.name]: e.target.value,
-    // });
   };
 
   useEffect(() => {
@@ -39,6 +34,7 @@ function Profile() {
       const { data } = await res.json();
       // handle error
       setUserDetails(data.userDetails);
+      setLoading(false);
     };
     getUserDetails();
   }, []);
@@ -61,6 +57,9 @@ function Profile() {
     });
     await res.json();
   };
+  if (loading) {
+    return <div> Loading ... </div>;
+  }
   return (
     <div>
       <div className="block flex justify-end pb-4">
