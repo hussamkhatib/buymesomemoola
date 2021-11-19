@@ -2,28 +2,34 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
-function EditProfile({ closeEditMode }) {
+function EditProfile({
+  userDetails,
+  closeEditMode,
+  handleChange,
+  handleSubmit,
+}) {
   return (
     <>
       <div>
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div className="w-full">
                   <label
-                    htmlFor="about"
+                    htmlFor="bio"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    About
+                    Bio
                   </label>
                   <div className="mt-1">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="bio"
+                      name="bio"
+                      value={userDetails.bio}
+                      onChange={handleChange}
                       rows="3"
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                      placeholder="you@example.com"
+                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
