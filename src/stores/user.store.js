@@ -15,6 +15,7 @@ export const useStore = create((set) => ({
 
 export const useUser = create((set) => ({
   address: null,
+  name: null,
   contract: null,
   kit: null,
   celoBalance: 0,
@@ -49,9 +50,10 @@ export const useUser = create((set) => ({
             'Content-Type': 'application/json',
           },
         });
-        const { data, error } = await res.json();
-        if (!data) set({ isRegisteredUser: true });
-        else set({ error: `⚠️ ${error}.` });
+        const { data } = await res.json();
+        // handle error
+        if (data) set({ name: data.name });
+        else set({ isRegisteredUser: true });
       } catch (error) {
         set({ error: `⚠️ ${error}.` });
       }
