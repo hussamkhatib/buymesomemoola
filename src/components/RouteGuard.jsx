@@ -1,45 +1,42 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useUser } from '../stores/user.store'
-
+import { useUser } from '../stores/user.store';
 // import { userService } from 'services';
 
-
 function RouteGuard({ children }) {
-    const address = useUser(state => state.address)
+  const address = useUser((state) => state.address);
+  const isLoading = useUser((state) => state.loading);
 
-    const router = useRouter();
-    const [authorized, setAuthorized] = useState(false);
+  const router = useRouter();
+  const [authorized, setAuthorized] = useState(false);
 
-    useEffect(() => {
-        // on initial load - run auth check 
-      
-        // on route change start - hide page content by setting authorized to false  
-        // const hideContent = () => setAuthorized(false);
-        // router.events.on('routeChangeStart', hideContent);
-        const authCheck = () => {
-            if (!address) {
-                setAuthorized(false);
-                router.push('/');
-            } else {
-                setAuthorized(true);
-            }
-        }
-        authCheck()
+  useEffect(() => {
+    // on initial load - run auth check
 
-        // on route change complete - run auth check 
-        // router.events.on('routeChangeComplete', authCheck)
+    // on route change start - hide page content by setting authorized to false
+    // const hideContent = () => setAuthorized(false);
+    // router.events.on('routeChangeStart', hideContent);
+    const authCheck = () => {
+      if (!address) {
+        setAuthorized(false);
+        router.push('/');
+      } else {
+        setAuthorized(true);
+      }
+    };
 
-        // unsubscribe from events in useEffect return function
-        return () => {
-            // router.events.off('routeChangeStart', hideContent);
-            // router.events.off('routeChangeComplete', authCheck);
-        }
+    if (!isLoading) authCheck();
+    // on route change complete - run auth check
+    // router.events.on('routeChangeComplete', authCheck)
 
-    }, [address]);
+    // unsubscribe from events in useEffect return function
+    return () => {
+      // router.events.off('routeChangeStart', hideContent);
+      // router.events.off('routeChangeComplete', authCheck);
+    };
+  }, [address, isLoading]);
 
-    return (authorized && children);
+  return authorized && children;
 }
 
-
-export default RouteGuard
+export default RouteGuard;

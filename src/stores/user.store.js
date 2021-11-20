@@ -21,6 +21,7 @@ export const useUser = create((set) => ({
   cUSDBalance: 0,
   error: null,
   isRegisteredUser: false,
+  loading: true,
   toggleRegisteredUser: () =>
     set((state) => ({
       isRegisteredUser: !state.isRegisteredUser,
@@ -55,6 +56,7 @@ export const useUser = create((set) => ({
         set({ error: `⚠️ ${error}.` });
       }
     }
+    set({ loading: false });
   },
 }));
 
