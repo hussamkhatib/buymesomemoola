@@ -12,6 +12,7 @@ function Profile({ isReadOnly, name }) {
     bio: '',
     avatar: '',
     coverImage: '',
+    followers: 0,
   });
   const [isEdit, setIsEdit] = useState(false);
 
@@ -81,8 +82,8 @@ function Profile({ isReadOnly, name }) {
           </>
         )}
       </div>
-      <ProfileHeader userDetails={userDetails} isEdit={isEdit} />
-      <ProfileBio bio={userDetails.bio} isEdit={isEdit} />
+      <ProfileHeader name={name} userDetails={userDetails} isEdit={isEdit} />
+      <ProfileBio bio={userDetails?.bio} isEdit={isEdit} />
     </div>
   );
 }
