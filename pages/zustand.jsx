@@ -21,7 +21,6 @@ export default function Zustand() {
 
       <p>celoBalance: {celoBalance}</p>
       <p>cUSDBalance: {cUSDBalance}</p>
-      <button className="btn btn-primary">Bumblebee</button>
     </div>
   );
 }

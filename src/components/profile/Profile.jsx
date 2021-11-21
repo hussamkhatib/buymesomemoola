@@ -6,7 +6,7 @@ import Edit from '../icons/Edit';
 import EditProfile from './EditProfile';
 import PopUp from '../PopUp';
 
-function Profile({ isReadOnly, name }) {
+function Profile({ isReadOnly, name, followers }) {
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState({
     bio: '',
@@ -82,7 +82,12 @@ function Profile({ isReadOnly, name }) {
           </>
         )}
       </div>
-      <ProfileHeader name={name} userDetails={userDetails} isEdit={isEdit} />
+      <ProfileHeader
+        name={name}
+        followers={followers}
+        userDetails={userDetails}
+        isEdit={isEdit}
+      />
       <ProfileBio bio={userDetails?.bio} isEdit={isEdit} />
     </div>
   );

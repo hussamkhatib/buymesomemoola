@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import Avatar from '../private/Avatar';
 
-function ProfileHeader({ name, userDetails }) {
+function ProfileHeader({ name, userDetails, followers }) {
   return (
     <>
       <div className="relative h-80 -z-10">
@@ -22,7 +22,7 @@ function ProfileHeader({ name, userDetails }) {
           >
             {name}
           </p>
-          <p className="text-black">{userDetails?.followers} followers</p>
+          <p className="text-black">{followers} followers</p>
         </div>
       </div>
     </>
