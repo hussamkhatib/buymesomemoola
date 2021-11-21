@@ -44,7 +44,6 @@ export const useUser = create((set) => ({
         const bal = await getBalance(kit, user_address);
         const { celoBalance, cUSDBalance } = bal;
         set({ address: user_address, kit, celoBalance, cUSDBalance });
-
         const res = await fetch(`/api/users/address/${user_address}`, {
           method: 'GET',
           headers: {

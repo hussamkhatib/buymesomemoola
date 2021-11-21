@@ -5,7 +5,7 @@ import ProfileHeader from './ProfileHeader';
 import Edit from '../icons/Edit';
 import EditProfile from './EditProfile';
 import PopUp from '../PopUp';
-import FollowBtn from '../actionButtons/FollowBtn';
+import SupportBtn from '../actionButtons/SupportBtn';
 import SupportCeloModal from '../modals/SupportCeloModal';
 import { useUser } from '../../stores/user.store';
 
@@ -25,7 +25,6 @@ function Profile({
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
   const [donateCelo, setDonateCelo] = useState(0);
-
   const [showSupportModal, setShowSupportModal] = useState(false);
 
   const transferMoola = async (e) => {
@@ -54,6 +53,9 @@ function Profile({
   const closeSupportModal = () => {
     setShowSupportModal(false);
   };
+  const isOwner = activeAddress === address;
+  if (!activeAddress) return <div>loading...</div>;
+
   return (
     <div className="pb-20">
       <div className="block flex justify-end">
@@ -84,7 +86,7 @@ function Profile({
       />
       <ProfileBio bio={userDetails?.bio} isEdit={isEdit} />
       <div className="p-4">
-        <FollowBtn supportModal={supportModal} />
+        {isOwner ? null : <SupportBtn supportModal={supportModal} />}
         {showSupportModal ? (
           <SupportCeloModal
             closeSupportModal={closeSupportModal}

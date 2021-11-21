@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function FollowBtn({ supportModal }) {
+function SupportBtn({ supportModal }) {
   return (
     <button
       onClick={() => supportModal()}
       type="button"
       className="btn btn-primary"
     >
-      Follow
+      Support
     </button>
   );
 }
 
-export default FollowBtn;
+export default SupportBtn;
