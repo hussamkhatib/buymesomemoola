@@ -71,6 +71,7 @@ function MeWrapper() {
     });
     await res.json();
     closeEditMode();
+    setUserDetails(updatedUserDetails);
     toast.success('user updated', toastProps);
   };
 
