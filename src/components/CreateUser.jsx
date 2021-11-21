@@ -41,8 +41,8 @@ function CreateUser() {
         }),
       });
       await res.json();
+      toggleRegisteredUser();
     }
-    toggleRegisteredUser();
   };
 
   return (
