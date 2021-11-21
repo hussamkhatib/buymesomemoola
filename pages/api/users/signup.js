@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   const {
     method,
-    body: { name, address },
+    body: { userDetails, address },
   } = req;
 
   if (method === 'POST') {
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       { address },
       {
         $set: {
-          name,
+          userDetails,
           address,
         },
       },

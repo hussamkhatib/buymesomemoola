@@ -8,7 +8,9 @@ export default async function handler(req, res) {
   const { method } = req;
 
   if (method === 'GET') {
-    const data = await db.collection('users').findOne({ name });
+    const data = await db.collection('users').findOne({
+      'userDetails.name': name,
+    });
     return res.status(200).send({ data });
   }
 }

@@ -52,7 +52,7 @@ export const useUser = create((set) => ({
         });
         const { data } = await res.json();
         // handle error
-        if (data) set({ name: data.name });
+        if (data) set({ name: data.userDetails.name });
         else set({ isRegisteredUser: true });
       } catch (error) {
         set({ error: `⚠️ ${error}.` });
