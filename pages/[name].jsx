@@ -13,6 +13,7 @@ export default function User({ name, userDetails, followers, address }) {
         name={name}
         userDetails={userDetails}
         address={address}
+        followers={followers}
       />
     </div>
   );
