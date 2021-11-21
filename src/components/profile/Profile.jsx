@@ -20,9 +20,10 @@ function Profile({
   openEditMode,
   closeEditMode,
   isEdit,
+  address,
 }) {
   const kit = useUser((state) => state.kit);
-  const address = useUser((state) => state.address);
+  const activeAddress = useUser((state) => state.address);
   const [donateCelo, setDonateCelo] = useState(0);
 
   const [showSupportModal, setShowSupportModal] = useState(false);
@@ -33,8 +34,8 @@ function Profile({
 
     const oneGold = kit.web3.utils.toWei('1', 'ether');
 
-    const tx = await goldtoken.transfer(userDetails.address, oneGold).send({
-      from: address,
+    const tx = await goldtoken.transfer(address, oneGold).send({
+      from: activeAddress,
     });
 
     const hash = await tx.getHash();
@@ -53,7 +54,6 @@ function Profile({
   const closeSupportModal = () => {
     setShowSupportModal(false);
   };
-
   return (
     <div className="pb-20">
       <div className="block flex justify-end">
