@@ -16,6 +16,7 @@ export default async function handler(req, res) {
         $set: {
           userDetails,
           address,
+          followers: 0,
         },
       },
       {

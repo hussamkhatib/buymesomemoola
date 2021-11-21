@@ -22,7 +22,7 @@ function ProfileHeader({ name, userDetails }) {
           >
             {name}
           </p>
-          <p>{userDetails?.followers} followers</p>
+          <p className="text-black">{userDetails?.followers} followers</p>
         </div>
       </div>
     </>
