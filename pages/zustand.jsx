@@ -1,28 +1,27 @@
-import React from "react";
-import { useStore,useUser } from "../src/stores/user.store";
-
+import React from 'react';
+import { useStore, useUser } from '../src/stores/user.store';
 
 export default function Zustand() {
-  const bears = useStore(state => state.bears)
-  const celoBalance = useUser(state => state.celoBalance)
-  const cUSDBalance = useUser(state => state.cUSDBalance)
+  const bears = useStore((state) => state.bears);
+  const celoBalance = useUser((state) => state.celoBalance);
+  const cUSDBalance = useUser((state) => state.cUSDBalance);
 
-  const increasePopulation = useStore(state => state.increasePopulation)
+  const increasePopulation = useStore((state) => state.increasePopulation);
 
-  return <div>
-    <h1>Zustand</h1>
-    <p>
-      Bears {bears}
-    </p>
-    <button type='button' onClick={increasePopulation}>
-      Increase population 
-    </button>
-    <button type='button' onClick={increasePopulation}>
-      Remove all bears 
-    </button>
+  return (
+    <div>
+      <h1>Zustand</h1>
+      <p>Bears {bears}</p>
+      <button type="button" onClick={increasePopulation}>
+        Increase population
+      </button>
+      <button type="button" onClick={increasePopulation}>
+        Remove all bears
+      </button>
 
-    <p>celoBalance: {celoBalance}</p>
-    <p>cUSDBalance: {cUSDBalance}</p>
-
-  </div>;
+      <p>celoBalance: {celoBalance}</p>
+      <p>cUSDBalance: {cUSDBalance}</p>
+      <button className="btn btn-primary">Bumblebee</button>
+    </div>
+  );
 }

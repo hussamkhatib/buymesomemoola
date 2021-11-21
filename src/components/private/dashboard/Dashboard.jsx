@@ -1,14 +1,14 @@
-import React from 'react'
-import Checklist from './Checklist'
-import Overview from './Overview'
+import React from 'react';
+import Checklist from './Checklist';
+import Overview from './Overview';
 
 function Dashboard() {
-    return (
-        <div>
-            <Overview/>
-            <Checklist />
-        </div>
-    )
+  return (
+    <div className="text-accent-content">
+      <Overview />
+      <Checklist />
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;
