@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProfileBio from './ProfileBio';
 import ProfileHeader from './ProfileHeader';
 import Edit from '../icons/Edit';
@@ -9,43 +9,20 @@ import FollowBtn from '../actionButtons/FollowBtn';
 import SupportCeloModal from '../modals/SupportCeloModal';
 import { useUser } from '../../stores/user.store';
 
-function Profile({ isReadOnly, name, followers }) {
+function Profile({ userDetails, isReadOnly, name, followers }) {
   const kit = useUser((state) => state.kit);
   const address = useUser((state) => state.address);
   const [donateCelo, setDonateCelo] = useState(0);
 
-  const [loading, setLoading] = useState(true);
-  const [userDetails, setUserDetails] = useState({
-    bio: '',
-    avatar: '',
-    coverImage: '',
-    followers: 0,
-  });
   const [showSupportModal, setShowSupportModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
-  const handleChange = (e) => {
-    setUserDetails({
-      ...userDetails,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    const getUserDetails = async () => {
-      const res = await fetch(`/api/users/name/${name}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const { data } = await res.json();
-      // handle error
-      setUserDetails(data.userDetails);
-      setLoading(false);
-    };
-    getUserDetails();
-  }, []);
+  // const handleChange = (e) => {
+  //   setUserDetails({
+  //     ...userDetails,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   const closeEditMode = () => {
     setIsEdit(false);
@@ -83,9 +60,7 @@ function Profile({ isReadOnly, name, followers }) {
     });
     await res.json();
   };
-  if (loading) {
-    return <div> Loading ... </div>;
-  }
+
   const supportModal = () => {
     setShowSupportModal(true);
   };
@@ -101,7 +76,7 @@ function Profile({ isReadOnly, name, followers }) {
           <PopUp>
             <EditProfile
               handleSubmit={handleSubmit}
-              handleChange={handleChange}
+              // handleChange={handleChange}
               userDetails={userDetails}
               closeEditMode={closeEditMode}
             />
