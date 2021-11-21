@@ -9,24 +9,23 @@ import FollowBtn from '../actionButtons/FollowBtn';
 import SupportCeloModal from '../modals/SupportCeloModal';
 import { useUser } from '../../stores/user.store';
 
-function Profile({ userDetails, isReadOnly, name, followers }) {
+function Profile({
+  userDetails,
+  isReadOnly,
+  name,
+  followers,
+  handleChange,
+  handleSubmit,
+  updatedUserDetails,
+  openEditMode,
+  closeEditMode,
+  isEdit,
+}) {
   const kit = useUser((state) => state.kit);
   const address = useUser((state) => state.address);
   const [donateCelo, setDonateCelo] = useState(0);
 
   const [showSupportModal, setShowSupportModal] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-
-  // const handleChange = (e) => {
-  //   setUserDetails({
-  //     ...userDetails,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  const closeEditMode = () => {
-    setIsEdit(false);
-  };
 
   const transferMoola = async (e) => {
     e.preventDefault();
@@ -46,20 +45,6 @@ function Profile({ userDetails, isReadOnly, name, followers }) {
   const handleCeloChange = (e) => {
     setDonateCelo(e.target.value);
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await fetch('/api/users/editprofile', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        userDetails,
-      }),
-    });
-    await res.json();
-  };
 
   const supportModal = () => {
     setShowSupportModal(true);
@@ -76,15 +61,15 @@ function Profile({ userDetails, isReadOnly, name, followers }) {
           <PopUp>
             <EditProfile
               handleSubmit={handleSubmit}
-              // handleChange={handleChange}
-              userDetails={userDetails}
+              handleChange={handleChange}
+              userDetails={updatedUserDetails}
               closeEditMode={closeEditMode}
             />
           </PopUp>
         ) : (
           <>
             {!isReadOnly ? (
-              <button onClick={() => setIsEdit(true)} type="button">
+              <button onClick={() => openEditMode()} type="button">
                 <Edit />
               </button>
             ) : null}

@@ -54,7 +54,6 @@ export const useUser = create((set) => ({
         const { data } = await res.json();
         // handle error
         if (data) {
-          console.log({ data });
           set({ name: data.userDetails.name, followers: data.followers });
         } else set({ isRegisteredUser: true });
       } catch (error) {
