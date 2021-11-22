@@ -41,7 +41,21 @@ function Profile({
     const receipt = await tx.waitReceipt();
     console.log({ hash, receipt });
     setShowSupportModal(false);
+
+    const res = await fetch('/api/users/transfereth', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        senderAddress: activeAddress,
+        receiverAddress: address,
+        transactionHash: hash,
+      }),
+    });
+    await res.json();
   };
+
   const handleCeloChange = (e) => {
     setDonateCelo(e.target.value);
   };
