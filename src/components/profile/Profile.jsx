@@ -111,7 +111,7 @@ function Profile({
             donateCelo={donateCelo}
           />
         ) : null}
-        <RecentSupporters />
+        <RecentSupporters followersArray={followersArray} />
       </div>
     </div>
   );
