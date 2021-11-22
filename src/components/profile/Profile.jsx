@@ -8,6 +8,7 @@ import PopUp from '../PopUp';
 import SupportBtn from '../actionButtons/SupportBtn';
 import SupportCeloModal from '../modals/SupportCeloModal';
 import { useUser } from '../../stores/user.store';
+import RecentSupporters from './RecentSupporters';
 
 function Profile({
   userDetails,
@@ -21,6 +22,7 @@ function Profile({
   closeEditMode,
   isEdit,
   address,
+  followersArray,
 }) {
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
@@ -69,7 +71,6 @@ function Profile({
   };
   const isOwner = activeAddress === address;
   if (!activeAddress) return <div>loading...</div>;
-
   return (
     <div className="pb-20">
       <div className="block flex justify-end">
@@ -110,6 +111,7 @@ function Profile({
             donateCelo={donateCelo}
           />
         ) : null}
+        <RecentSupporters />
       </div>
     </div>
   );

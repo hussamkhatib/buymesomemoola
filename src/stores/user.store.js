@@ -22,6 +22,7 @@ export const useUser = create((set) => ({
   celoBalance: 0,
   cUSDBalance: 0,
   error: null,
+  web3: null,
   isRegisteredUser: false,
   loading: true,
   toggleRegisteredUser: () =>
@@ -43,7 +44,7 @@ export const useUser = create((set) => ({
 
         const bal = await getBalance(kit, user_address);
         const { celoBalance, cUSDBalance } = bal;
-        set({ address: user_address, kit, celoBalance, cUSDBalance });
+        set({ address: user_address, kit, celoBalance, cUSDBalance, web3 });
         const res = await fetch(`/api/users/address/${user_address}`, {
           method: 'GET',
           headers: {
