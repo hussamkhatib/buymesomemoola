@@ -13,7 +13,7 @@ export default function User({
   followersArray,
 }) {
   return (
-    <div>
+    <div className="max-w-5xl mx-auto w-full pt-8">
       <Profile
         isReadOnly
         name={name}
