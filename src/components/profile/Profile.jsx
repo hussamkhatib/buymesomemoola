@@ -24,6 +24,7 @@ function Profile({
   address,
   followersArray,
   supporters,
+  supportersDetails,
 }) {
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
@@ -72,6 +73,7 @@ function Profile({
     setShowSupportModal(false);
   };
   const isOwner = activeAddress === address;
+  // should be visible for un connected users
   if (!activeAddress) return <div>loading...</div>;
   return (
     <div className="pb-20">
@@ -116,6 +118,7 @@ function Profile({
         <RecentSupporters
           followersArray={followersArray}
           supporters={supporters}
+          supportersDetails={supportersDetails}
         />
       </div>
     </div>

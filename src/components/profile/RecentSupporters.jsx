@@ -2,18 +2,24 @@
 import React from 'react';
 import RecentSupportersCard from './RecentSupportersCard';
 
-function RecentSupporters({ supporters }) {
-  console.log(supporters);
+function RecentSupporters({ supporters, supportersDetails }) {
+  const addresses = supportersDetails.map((s) => s.address);
+  console.log({ supportersDetails, addresses });
   return (
     <div className="py-8">
       <h3 className="text-3xl pb-10">Recent Supporters</h3>
-      {supporters.map((supporter) => (
-        <RecentSupportersCard
-          hash={supporter.hash}
-          key={supporter.hash}
-          celo={supporter.amount}
-        />
-      ))}
+      {supporters.map((supporter) => {
+        const index = addresses.indexOf(supporter.from);
+        return (
+          <RecentSupportersCard
+            hash={supporter.hash}
+            key={supporter.hash}
+            celo={supporter.amount}
+            avatar={supportersDetails[index].avatar}
+            name={supportersDetails[index].name}
+          />
+        );
+      })}
     </div>
   );
 }

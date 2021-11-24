@@ -12,6 +12,7 @@ export default function User({
   address,
   followersArray,
   supporters,
+  supportersDetails,
 }) {
   return (
     <div className="max-w-5xl mx-auto w-full pt-8">
@@ -23,6 +24,7 @@ export default function User({
         followers={followers}
         followersArray={followersArray}
         supporters={supporters}
+        supportersDetails={supportersDetails}
       />
     </div>
   );
@@ -43,10 +45,27 @@ export async function getServerSideProps(context) {
     .find({
       to: address,
     })
+    .limit(5)
     .toArray();
 
-  console.log({ donations });
+  const donaters = donations.map((d) => d.from);
+  console.log({ donations, donaters });
+  const donatersDetails = await db
+    .collection('users')
+    .find({
+      address: {
+        $in: donaters,
+      },
+    })
+    .toArray();
 
+  console.log({ donatersDetails });
+  const donatorsNameAndAvatar = donatersDetails.map((donater) => ({
+    address: donater.address,
+    name: donater.userDetails.name,
+    avatar: donater.userDetails.avatar,
+  }));
+  console.log({ donatorsNameAndAvatar });
   return {
     props: {
       name,
@@ -55,6 +74,7 @@ export async function getServerSideProps(context) {
       address: userDetails.address,
       followersArray: userDetails.followersArray,
       supporters: JSON.parse(JSON.stringify(donations)),
+      supportersDetails: JSON.parse(JSON.stringify(donatorsNameAndAvatar)),
     },
   };
 }
