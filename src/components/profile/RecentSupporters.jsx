@@ -7,11 +7,13 @@ function RecentSupporters({ supporters }) {
   return (
     <div className="py-8">
       <h3 className="text-3xl pb-10">Recent Supporters</h3>
-      <RecentSupportersCard
-        hash={supporters.hash}
-        key={supporters.hash}
-        celo={supporters.amount}
-      />
+      {supporters.map((supporter) => (
+        <RecentSupportersCard
+          hash={supporter.hash}
+          key={supporter.hash}
+          celo={supporter.amount}
+        />
+      ))}
     </div>
   );
 }

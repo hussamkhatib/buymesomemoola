@@ -38,9 +38,15 @@ export async function getServerSideProps(context) {
   });
   const { address } = userDetails;
 
-  const donations = await db.collection('donations').findOne({
-    to: address,
-  });
+  const donations = await db
+    .collection('donations')
+    .find({
+      to: address,
+    })
+    .toArray();
+
+  console.log({ donations });
+
   return {
     props: {
       name,
