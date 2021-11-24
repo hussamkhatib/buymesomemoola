@@ -6,27 +6,16 @@ export default async function handler(req, res) {
 
   const {
     method,
-    body: { transactionHash, receiverAddress, senderAddress },
+    body: { amount, transactionHash, receiverAddress, senderAddress },
   } = req;
 
   if (method === 'POST') {
-    await db.collection('users').updateOne(
-      { address: senderAddress },
-      {
-        $push: {
-          follows: transactionHash,
-        },
-      }
-    );
-
-    await db.collection('users').updateOne(
-      { address: receiverAddress },
-      {
-        $push: {
-          followersArray: transactionHash,
-        },
-      }
-    );
+    await db.collection('donations').insertOne({
+      from: senderAddress,
+      to: receiverAddress,
+      hash: transactionHash,
+      amount,
+    });
 
     return res.status(200).send({ data: 'transactionHash added' });
   }

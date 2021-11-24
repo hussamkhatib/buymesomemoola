@@ -11,6 +11,7 @@ export default function User({
   followers,
   address,
   followersArray,
+  supporters,
 }) {
   return (
     <div className="max-w-5xl mx-auto w-full pt-8">
@@ -21,6 +22,7 @@ export default function User({
         address={address}
         followers={followers}
         followersArray={followersArray}
+        supporters={supporters}
       />
     </div>
   );
@@ -34,6 +36,11 @@ export async function getServerSideProps(context) {
   const userDetails = await db.collection('users').findOne({
     'userDetails.name': name,
   });
+  const { address } = userDetails;
+
+  const donations = await db.collection('donations').findOne({
+    to: address,
+  });
   return {
     props: {
       name,
@@ -41,6 +48,7 @@ export async function getServerSideProps(context) {
       followers: userDetails.followers,
       address: userDetails.address,
       followersArray: userDetails.followersArray,
+      supporters: JSON.parse(JSON.stringify(donations)),
     },
   };
 }

@@ -23,6 +23,7 @@ function Profile({
   isEdit,
   address,
   followersArray,
+  supporters,
 }) {
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
@@ -53,6 +54,7 @@ function Profile({
         senderAddress: activeAddress,
         receiverAddress: address,
         transactionHash: hash,
+        amount: donateCelo,
       }),
     });
     await res.json();
@@ -111,7 +113,10 @@ function Profile({
             donateCelo={donateCelo}
           />
         ) : null}
-        <RecentSupporters followersArray={followersArray} />
+        <RecentSupporters
+          followersArray={followersArray}
+          supporters={supporters}
+        />
       </div>
     </div>
   );
