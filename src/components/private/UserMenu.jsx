@@ -11,11 +11,6 @@ const navBarList = [
   },
   {
     key: 1,
-    title: 'Support',
-    route: '/support',
-  },
-  {
-    key: 2,
     title: 'My Profile',
     route: '/me',
   },
