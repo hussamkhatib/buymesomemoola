@@ -10,7 +10,7 @@ function Layout({ children }) {
     <div className="grid grid-rows-layout min-h-screen">
       <Navbar />
       {children}
-      <ToastContainer 
+      <ToastContainer
         autoClose={5000}
         closeOnClick
         position="bottom-right"
@@ -24,5 +24,5 @@ function Layout({ children }) {
 export default Layout;
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};

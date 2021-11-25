@@ -19,7 +19,7 @@ const navBarList = [
 function UserMenu() {
   const router = useRouter();
   return (
-    <ul>
+    <ul className="px-2 pb-3">
       {navBarList.map((item) => (
         <li
           key={item.key}

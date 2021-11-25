@@ -18,7 +18,7 @@ function ProfileHeader({ name, userDetails, followers }) {
         <div className="ml-2 text-white">
           <p
             style={{ textShadow: '4px 4px 12px rgba(0,0,0,1)' }}
-            className="text-xl md:text-4xl mt-6  font-semibold"
+            className="text-xl md:text-4xl mt-8  md:mt-6  font-semibold"
           >
             {name}
           </p>
