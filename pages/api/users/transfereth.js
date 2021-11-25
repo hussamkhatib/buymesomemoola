@@ -23,6 +23,7 @@ export default async function handler(req, res) {
         {
           $inc: {
             followers: 1,
+            earnings: amount,
           },
         }
       );

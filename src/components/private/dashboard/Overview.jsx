@@ -2,7 +2,7 @@
 import React from 'react';
 import OverviewCard from './OverviewCard';
 
-function Overview({ followers }) {
+function Overview({ followers, earnings }) {
   return (
     <div className="bg-accent p-6 mb-10">
       <h3 className="py-2 text-xl">Overview</h3>
@@ -14,7 +14,7 @@ function Overview({ followers }) {
         />
         <OverviewCard
           title="Total Earning"
-          count={821}
+          count={earnings}
           // stat="21% more than last month"
         />
       </div>

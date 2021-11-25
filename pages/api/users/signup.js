@@ -17,6 +17,7 @@ export default async function handler(req, res) {
           userDetails,
           address,
           followers: 0,
+          earnings: 0,
         },
       },
       {
