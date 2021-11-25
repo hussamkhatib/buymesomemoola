@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import CheckListCard from './CheckListCard';
 import ShareLink from './ShareLink';
@@ -14,17 +15,16 @@ const linkIcon = (
   </svg>
 );
 
-function Checklist() {
+function Checklist({ name }) {
   return (
     <div className="bg-accent p-6 mb-10">
-      <h3 className="py-2 text-xl">Checklist</h3>
       <div className="py-8">
         <CheckListCard
           icon={linkIcon}
           title="Link from your social bio and descriptions"
           description="Keep your BMC link where your followers can find them. Most creators add it as their primary bio link on Twitter, Instagram, Linktree, Youtube description, etc."
         >
-          <ShareLink />
+          <ShareLink name={name} />
         </CheckListCard>
       </div>
     </div>
