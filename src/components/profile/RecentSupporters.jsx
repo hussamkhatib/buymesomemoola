@@ -4,7 +4,6 @@ import RecentSupportersCard from './RecentSupportersCard';
 
 function RecentSupporters({ supporters, supportersDetails }) {
   const addresses = supportersDetails?.map((s) => s.address);
-  console.log({ supportersDetails, addresses });
   return (
     <div className="py-8">
       <h3 className="text-3xl pb-10">Recent Supporters</h3>

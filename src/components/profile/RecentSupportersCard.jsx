@@ -1,22 +1,31 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import Image from 'next/image';
+import React from 'react';
 import Celo from '../icons/Celo';
-import { useUser } from '../../stores/user.store';
+import ExternalLink from '../icons/ExternalLink';
 
 function RecentSupportersCard({ hash, celo, avatar, name }) {
-  // const [name, setName] = useState(null);
-  // const web3 = useUser((state) => state.web3);
-  // web3.eth.getTransactionReceipt(hash).then((res) => {
-  //   setName(res.to);
-  // });
-
-  // todo make first letter capital of name
   return (
-    <div className="flex mb-6 bg-base-200 p-4 rounded">
-      <p className="pl-4 text-xl">
-        {name} donated {celo} M<Celo size={20} />
-        la
-      </p>
+    <div className="flex mb-6 bg-base-200 p-4 rounded flex">
+      <Image src={avatar} width={64} height={64} className="rounded-full" />
+      <div className="pl-4  flex flex-col">
+        <p className="text-2xl">
+          {name} donated {celo} M<Celo size={20} />
+          la
+        </p>
+        <a
+          href={`https://alfajores-blockscout.celo-testnet.org/tx/${hash}`}
+          target="_blank"
+          rel="noreferrer"
+          className="link link-secondary"
+        >
+          view in blockexplorer{' '}
+          <span className="">
+            <ExternalLink />
+          </span>
+        </a>
+      </div>
     </div>
   );
 }
