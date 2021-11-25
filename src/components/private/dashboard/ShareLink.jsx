@@ -1,6 +1,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'react-toastify';
+
+const toastProps = {
+  position: 'bottom-right',
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  icon: false,
+};
 
 function ShareLink({ name }) {
   const link = `https://buymesomemoola.vercel.app/${name}`;
@@ -15,6 +27,7 @@ function ShareLink({ name }) {
         />
         <CopyToClipboard text={link}>
           <button
+            onClick={() => toast.warning('copied to clipboard', toastProps)}
             type="button"
             className="absolute top-0 right-0 rounded-l-none btn btn-primary"
           >

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import Nav from '../NavBar';
 import UserMenu from './UserMenu';
@@ -16,6 +17,12 @@ function UserLayout({ children }) {
           <div className="px-4 md:px-8 w-full">{children}</div>
         </div>
       </RouteGuard>
+      <ToastContainer
+        autoClose={5000}
+        closeOnClick
+        position="bottom-right"
+        pauseOnHover
+      />
     </div>
   );
 }
