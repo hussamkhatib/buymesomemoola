@@ -10,7 +10,6 @@ export default function User({
   userDetails,
   followers,
   address,
-  followersArray,
   supporters,
   supportersDetails,
 }) {
@@ -22,7 +21,6 @@ export default function User({
         userDetails={userDetails}
         address={address}
         followers={followers}
-        followersArray={followersArray}
         supporters={supporters}
         supportersDetails={supportersDetails}
       />
@@ -72,7 +70,6 @@ export async function getServerSideProps(context) {
       userDetails: userDetails.userDetails,
       followers: userDetails.followers,
       address: userDetails.address,
-      followersArray: userDetails.followersArray,
       supporters: JSON.parse(JSON.stringify(donations)),
       supportersDetails: JSON.parse(JSON.stringify(donatorsNameAndAvatar)),
     },

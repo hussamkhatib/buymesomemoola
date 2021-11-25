@@ -22,7 +22,6 @@ function Profile({
   closeEditMode,
   isEdit,
   address,
-  followersArray,
   supporters,
   supportersDetails,
 }) {
@@ -116,7 +115,6 @@ function Profile({
           />
         ) : null}
         <RecentSupporters
-          followersArray={followersArray}
           supporters={supporters}
           supportersDetails={supportersDetails}
         />
