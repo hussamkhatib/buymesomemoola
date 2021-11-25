@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
     .toArray();
 
   const donaters = donations.map((d) => d.from);
-  console.log({ donations, donaters });
+  // console.log({ donations, donaters });
   const donatersDetails = await db
     .collection('users')
     .find({
@@ -57,13 +57,13 @@ export async function getServerSideProps(context) {
     })
     .toArray();
 
-  console.log({ donatersDetails });
+  // console.log({ donatersDetails });
   const donatorsNameAndAvatar = donatersDetails.map((donater) => ({
     address: donater.address,
     name: donater.userDetails.name,
     avatar: donater.userDetails.avatar,
   }));
-  console.log({ donatorsNameAndAvatar });
+  // console.log({ donatorsNameAndAvatar });
   return {
     props: {
       name,

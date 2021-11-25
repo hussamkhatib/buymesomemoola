@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React from 'react';
 
-function OverviewCard({title,count}) {
-    return (
-        <div>
-            <p className='text-sm pb-2'>{title}</p>
-            <p className='text-3xl font-bold'>{count}</p>
-        </div>
-    )
+function OverviewCard({ title, count }) {
+  return (
+    <div className="shadow stats mr-10">
+      <div className="stat">
+        <div className="stat-title">{title}</div>
+        <div className="stat-value text-primary">{count}</div>
+        {/* <div className="stat-desc">{stat}</div> */}
+      </div>
+    </div>
+  );
 }
 
-export default OverviewCard
+export default OverviewCard;

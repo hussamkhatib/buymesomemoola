@@ -3,10 +3,10 @@ import React from 'react';
 import Checklist from './Checklist';
 import Overview from './Overview';
 
-function Dashboard({ name }) {
+function Dashboard({ name, followers }) {
   return (
     <div className="text-accent-content">
-      <Overview />
+      <Overview followers={followers} />
       <Checklist name={name} />
     </div>
   );
