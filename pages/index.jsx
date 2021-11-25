@@ -3,7 +3,7 @@ import Hero from '../src/components/home/Hero';
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="bg-neutral">
       <Hero />
     </div>
   );
