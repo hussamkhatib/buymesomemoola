@@ -125,7 +125,7 @@ function CreateUser() {
               htmlFor="bio"
               className="block text-sm font-medium text-gray-700"
             >
-              Bio
+              What are you creating
             </label>
             <div className="mt-1">
               <textarea
@@ -133,7 +133,8 @@ function CreateUser() {
                 name="bio"
                 value={userDetails.bio}
                 onChange={handleChange}
-                rows="3"
+                rows="2"
+                maxLength={70}
                 required
                 className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
               />
