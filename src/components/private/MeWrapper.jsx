@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Profile from '../profile/Profile';
@@ -25,6 +27,8 @@ function MeWrapper() {
     avatar: '',
     coverImage: '',
   });
+  const [imageSrc, setImageSrc] = useState();
+
   const [updatedUserDetails, setUpdatedUserDetails] = useState(userDetails);
 
   useEffect(() => {
@@ -37,6 +41,7 @@ function MeWrapper() {
       });
       const { data } = await res.json();
       // handle error
+      setImageSrc(data.userDetails.avatar);
       setUserDetails(data.userDetails);
       setUpdatedUserDetails(data.userDetails);
       setLoading(false);
@@ -46,6 +51,7 @@ function MeWrapper() {
 
   const closeEditMode = () => {
     setIsEdit(false);
+    setImageSrc(userDetails.avatar);
   };
   const openEditMode = () => {
     setIsEdit(true);
@@ -57,8 +63,49 @@ function MeWrapper() {
     });
   };
 
+  const handleOnChange = (changeEvent) => {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent) {
+      setImageSrc(onLoadEvent.target.result);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+  };
+
+  async function handleOnSubmit(target) {
+    const form = target;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === 'file'
+    );
+
+    const formData = new FormData();
+
+    for (const file of fileInput.files) {
+      formData.append('file', file);
+    }
+
+    formData.append('upload_preset', 'buymesomemoola');
+
+    const data = await fetch(
+      'https://api.cloudinary.com/v1_1/dbbunxz2o/image/upload',
+      {
+        method: 'POST',
+        body: formData,
+      }
+    ).then((r) => r.json());
+
+    setImageSrc(null);
+    return data.secure_url;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const secureUrl = await handleOnSubmit(e.target);
+    const newState = {
+      ...updatedUserDetails,
+      avatar: secureUrl,
+    };
     const res = await fetch('/api/users/editprofile', {
       method: 'POST',
       headers: {
@@ -66,12 +113,13 @@ function MeWrapper() {
       },
       body: JSON.stringify({
         address,
-        userDetails: updatedUserDetails,
+        userDetails: newState,
       }),
     });
     await res.json();
     closeEditMode();
-    setUserDetails(updatedUserDetails);
+    setUpdatedUserDetails(newState);
+    setUserDetails(newState);
     toast.success('user updated', toastProps);
   };
 
@@ -85,6 +133,8 @@ function MeWrapper() {
         address={address}
         followers={followers}
         handleChange={handleChange}
+        handleOnChange={handleOnChange}
+        imageSrc={imageSrc}
         handleSubmit={handleSubmit}
         closeEditMode={closeEditMode}
         openEditMode={openEditMode}

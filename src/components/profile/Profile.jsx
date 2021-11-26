@@ -16,6 +16,8 @@ function Profile({
   name,
   followers,
   handleChange,
+  handleOnChange,
+  imageSrc,
   handleSubmit,
   updatedUserDetails,
   openEditMode,
@@ -82,6 +84,8 @@ function Profile({
             <EditProfile
               handleSubmit={handleSubmit}
               handleChange={handleChange}
+              handleOnChange={handleOnChange}
+              imageSrc={imageSrc}
               userDetails={updatedUserDetails}
               closeEditMode={closeEditMode}
             />

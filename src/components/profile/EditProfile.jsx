@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import Image from 'next/image';
 import React from 'react';
 
 function EditProfile({
@@ -7,12 +8,14 @@ function EditProfile({
   closeEditMode,
   handleChange,
   handleSubmit,
+  handleOnChange,
+  imageSrc,
 }) {
   return (
     <>
       <div>
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form onSubmit={handleSubmit}>
+          <form method="post" onSubmit={handleSubmit}>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div className="w-full">
@@ -35,17 +38,10 @@ function EditProfile({
                 </div>
 
                 <div>
-                  <p className="block text-sm font-medium text-gray-700">
-                    Profile pic (cloudinary url supported for now )
-                  </p>
-                  <input
-                    type="text"
-                    name="avatar"
-                    value={userDetails.avatar}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
-                    required
-                  />
+                  <input type="file" name="file" onChange={handleOnChange} />
+                  {imageSrc ? (
+                    <Image src={imageSrc} height={68} width={68} />
+                  ) : null}
                 </div>
 
                 <div>

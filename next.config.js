@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['media.istockphoto.com'],
+    domains: ['media.istockphoto.com', 'res.cloudinary.com'],
   },
   webpack: (config) => {
     config.resolve.fallback = {
