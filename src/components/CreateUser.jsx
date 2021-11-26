@@ -22,6 +22,7 @@ function CreateUser() {
     bio: '',
     coverImage: '',
     avatar: '',
+    type: '',
   });
 
   const handleChange = (e) => {
@@ -73,6 +74,25 @@ function CreateUser() {
               onChange={handleChange}
               required
             />
+
+            <div className="py-3">
+              <select
+                value={userDetails.type}
+                onChange={handleChange}
+                name="type"
+                className="select select-bordered w-full max-w-xs"
+              >
+                <option value="" disabled="disabled" selected="selected">
+                  Select category which describes you best
+                </option>
+                <option value="developer">Developer</option>
+                <option value="artist">Artist</option>
+                <option value="youtuber">Youtuber</option>
+                <option value="writer">Writer</option>
+                <option value="community">Community</option>
+                <option value="gaming">Gaming</option>
+              </select>
+            </div>
 
             <div>
               <p className="block text-sm font-medium text-gray-700">
