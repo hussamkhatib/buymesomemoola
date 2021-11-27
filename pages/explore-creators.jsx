@@ -48,6 +48,7 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
     .toArray();
 
   const artists = await db
@@ -58,6 +59,7 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
     .toArray();
 
   const videoCreators = await db
@@ -68,6 +70,7 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
     .toArray();
 
   const writers = await db
@@ -78,6 +81,7 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
     .toArray();
 
   const community = await db
@@ -88,6 +92,7 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
     .toArray();
 
   const gaming = await db
@@ -98,6 +103,8 @@ export async function getServerSideProps() {
     .sort({
       followers: -1,
     })
+    .limit(4)
+
     .toArray();
 
   return {
