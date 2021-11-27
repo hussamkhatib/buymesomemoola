@@ -35,7 +35,8 @@ function NavBar() {
             <a className="text-sm md:text-base ml-6">Explore creators</a>
           </Link>
         </div>
-        {address && router.pathname === '/' ? (
+        {address &&
+        (router.pathname === '/' || router.pathname === '/explore-creators') ? (
           <Link href="/dashboard">
             <a className="bg-base-300 hover:bg-base-200 text-primary-content px-4 py-2 font-semibold">
               Dashboard
