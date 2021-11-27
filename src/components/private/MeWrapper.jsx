@@ -78,15 +78,15 @@ function MeWrapper() {
     const fileInput = Array.from(form.elements).find(
       ({ name }) => name === 'file'
     );
-
+    if (!fileInput.files.length) {
+      return false;
+    }
     const formData = new FormData();
 
     for (const file of fileInput.files) {
       formData.append('file', file);
     }
-
     formData.append('upload_preset', 'buymesomemoola');
-
     const data = await fetch(
       'https://api.cloudinary.com/v1_1/dbbunxz2o/image/upload',
       {
@@ -102,10 +102,13 @@ function MeWrapper() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const secureUrl = await handleOnSubmit(e.target);
-    const newState = {
-      ...updatedUserDetails,
-      avatar: secureUrl,
-    };
+    const newState = secureUrl
+      ? {
+          ...updatedUserDetails,
+          avatar: secureUrl,
+        }
+      : updatedUserDetails;
+
     const res = await fetch('/api/users/editprofile', {
       method: 'POST',
       headers: {
