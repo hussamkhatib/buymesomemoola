@@ -15,7 +15,6 @@ export async function getServerSideProps() {
   const { db } = await connectToDatabase();
 
   const userDetails = await db.collection('users').find({}).toArray();
-
   return {
     props: {
       data: JSON.parse(JSON.stringify(userDetails)),

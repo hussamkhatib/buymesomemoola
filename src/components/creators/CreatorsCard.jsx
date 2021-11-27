@@ -1,26 +1,30 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
 /* eslint-disable react/prop-types */
 
-function CreatorsCard({name,description,supporters,picture}) {
-    return (
-        <div>
-            <Image  layout='responsive' width={160}
-                height={140} src={picture}
-            />
-            <div className='h-creatorCard flex flex-col  justify-between'>
-                <p className='mt-1 pb-0.5 leading-5'><span className='font-semibold'>{name} </span>
-                    <span>
-                        {description}
-                    </span>
-                </p>
-                <p className='mt-1'>
-                    {supporters} Supporters
-                </p>
-            </div>
-        </div>
-    )
+function CreatorsCard({ name, description, supporters, picture }) {
+  return (
+    <div>
+      <div className="relative h-36 w-40">
+        {picture ? (
+          <Image layout="fill" src={picture} />
+        ) : (
+          <div className="bg-neutral-focus flex justify-center h-full text-xl text-neutral-content self-center">
+            <span className="self-center text-4xl">
+              {name[0].toUpperCase()}
+            </span>
+          </div>
+        )}
+      </div>
+      <div className="h-creatorCard flex flex-col  justify-between">
+        <p className="mt-1 pb-0.5 leading-5">
+          <span className="font-semibold">{name} </span>
+          <span>{description}</span>
+        </p>
+        <p className="mt-1">{supporters} Supporters</p>
+      </div>
+    </div>
+  );
 }
 
-export default CreatorsCard
-
+export default CreatorsCard;
