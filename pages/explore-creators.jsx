@@ -45,12 +45,18 @@ export async function getServerSideProps() {
     .find({
       'userDetails.type': 'developer',
     })
+    .sort({
+      followers: -1,
+    })
     .toArray();
 
   const artists = await db
     .collection('users')
     .find({
       'userDetails.type': 'artist',
+    })
+    .sort({
+      followers: -1,
     })
     .toArray();
 
@@ -59,12 +65,18 @@ export async function getServerSideProps() {
     .find({
       'userDetails.type': 'video creator',
     })
+    .sort({
+      followers: -1,
+    })
     .toArray();
 
   const writers = await db
     .collection('users')
     .find({
       'userDetails.type': 'writer',
+    })
+    .sort({
+      followers: -1,
     })
     .toArray();
 
@@ -73,12 +85,18 @@ export async function getServerSideProps() {
     .find({
       'userDetails.type': 'community',
     })
+    .sort({
+      followers: -1,
+    })
     .toArray();
 
   const gaming = await db
     .collection('users')
     .find({
       'userDetails.type': 'gaming',
+    })
+    .sort({
+      followers: -1,
     })
     .toArray();
 
