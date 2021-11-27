@@ -43,6 +43,7 @@ function MeWrapper() {
       const { data } = await res.json();
       // handle error
       setImageSrc(data.userDetails.avatar);
+      setCoverImageSrc(data.userDetails.coverImage);
       setUserDetails(data.userDetails);
       setUpdatedUserDetails(data.userDetails);
       setLoading(false);

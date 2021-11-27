@@ -19,7 +19,7 @@ function EditProfile({
         <div className="mt-5 md:mt-0 md:col-span-2">
           <form method="post" onSubmit={handleSubmit}>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
-              <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+              <div className="px-4 py-5 bg-white space-y-6 sm:span-6">
                 <div className="w-full">
                   <label
                     htmlFor="bio"
@@ -34,31 +34,53 @@ function EditProfile({
                       value={userDetails.bio}
                       onChange={handleChange}
                       rows="3"
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
+                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral resize-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <input type="file" name="file" onChange={handleOnChange} />
-                  {imageSrc ? (
-                    <Image src={imageSrc} height={68} width={68} />
-                  ) : null}
+                  <div className="relative h-40 ">
+                    {coverImageSrc ? (
+                      <Image src={coverImageSrc} layout="fill" />
+                    ) : null}
+                  </div>
+                  <label>
+                    <span className="block text-sm font-medium text-gray-700 inline mt-2 border-2 border-solid">
+                      Change Cover photo
+                    </span>
+                    <input
+                      type="file"
+                      className="hidden"
+                      name="coverImage"
+                      onChange={handleCoverImageChange}
+                      required
+                    />
+                  </label>
                 </div>
 
                 <div>
-                  <p className="block text-sm font-medium text-gray-700">
-                    Cover photo
-                  </p>
-                  <input
-                    type="file"
-                    name="coverImage"
-                    onChange={handleCoverImageChange}
-                    required
-                  />
-                  {coverImageSrc ? (
-                    <Image src={coverImageSrc} height={68} width={68} />
-                  ) : null}
+                  <div>
+                    {imageSrc ? (
+                      <Image
+                        className="rounded-full"
+                        src={imageSrc}
+                        height={68}
+                        width={68}
+                      />
+                    ) : null}
+                  </div>
+                  <label>
+                    <span className="block text-sm font-medium text-gray-700 inline mt-2 border-2 border-solid">
+                      Change profile picture
+                    </span>
+                    <input
+                      type="file"
+                      name="file"
+                      className="hidden"
+                      onChange={handleOnChange}
+                    />
+                  </label>
                 </div>
               </div>
 
