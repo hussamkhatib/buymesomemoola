@@ -20,8 +20,6 @@ function CreateUser() {
   const [userDetails, setUserDetails] = useState({
     name: '',
     bio: '',
-    coverImage: '',
-    avatar: '',
     type: '',
   });
 
@@ -94,33 +92,6 @@ function CreateUser() {
               </select>
             </div>
 
-            <div>
-              <p className="block text-sm font-medium text-gray-700">
-                Profile pic (cloudinary url supported for now )
-              </p>
-              <input
-                type="text"
-                name="avatar"
-                value={userDetails.avatar}
-                onChange={handleChange}
-                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
-                required
-              />
-            </div>
-
-            <div>
-              <p className="block text-sm font-medium text-gray-700">
-                Cover photo (cloudinary url supported for now )
-              </p>
-              <input
-                type="text"
-                name="coverImage"
-                value={userDetails.coverImage}
-                onChange={handleChange}
-                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
-                required
-              />
-            </div>
             <label
               htmlFor="bio"
               className="block text-sm font-medium text-gray-700"
