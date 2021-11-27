@@ -4,12 +4,13 @@ import Image from 'next/image';
 import Avatar from '../private/Avatar';
 
 function ProfileHeader({ name, userDetails, followers }) {
+  const src =
+    userDetails?.coverImage ||
+    'https://res.cloudinary.com/dbbunxz2o/image/upload/v1638009094/buymesomemoola/empty-rustic-wooden-table-with-blurred-christmas-lights-at-background-picture-id1041796884_ugnm12.jpg';
   return (
     <>
       <div className="relative h-80 -z-10">
-        {userDetails?.coverImage ? (
-          <Image layout="fill" src={userDetails?.coverImage} />
-        ) : null}
+        <Image layout="fill" src={src} />
       </div>
       <div className="relative z-10 -mt-16 ml-4 flex ">
         {userDetails?.avatar ? (

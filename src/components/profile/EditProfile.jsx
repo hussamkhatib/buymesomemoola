@@ -13,6 +13,9 @@ function EditProfile({
   handleCoverImageChange,
   coverImageSrc,
 }) {
+  const coverImage =
+    coverImageSrc ||
+    'https://res.cloudinary.com/dbbunxz2o/image/upload/v1638009094/buymesomemoola/empty-rustic-wooden-table-with-blurred-christmas-lights-at-background-picture-id1041796884_ugnm12.jpg';
   return (
     <>
       <div>
@@ -41,9 +44,7 @@ function EditProfile({
 
                 <div>
                   <div className="relative h-40 ">
-                    {coverImageSrc ? (
-                      <Image src={coverImageSrc} layout="fill" />
-                    ) : null}
+                    <Image src={coverImage} layout="fill" />
                   </div>
                   <label>
                     <span className="block text-sm font-medium text-gray-700 inline mt-2 border-2 border-solid">
