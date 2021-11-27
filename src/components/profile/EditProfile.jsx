@@ -10,6 +10,8 @@ function EditProfile({
   handleSubmit,
   handleOnChange,
   imageSrc,
+  handleCoverImageChange,
+  coverImageSrc,
 }) {
   return (
     <>
@@ -46,16 +48,17 @@ function EditProfile({
 
                 <div>
                   <p className="block text-sm font-medium text-gray-700">
-                    Cover photo (cloudinary url supported for now )
+                    Cover photo
                   </p>
                   <input
-                    type="text"
+                    type="file"
                     name="coverImage"
-                    value={userDetails.coverImage}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md text-neutral"
+                    onChange={handleCoverImageChange}
                     required
                   />
+                  {coverImageSrc ? (
+                    <Image src={coverImageSrc} height={68} width={68} />
+                  ) : null}
                 </div>
               </div>
 

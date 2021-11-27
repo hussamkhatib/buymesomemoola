@@ -26,6 +26,8 @@ function Profile({
   address,
   supporters,
   supportersDetails,
+  handleCoverImageChange,
+  coverImageSrc,
 }) {
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
@@ -88,6 +90,8 @@ function Profile({
               imageSrc={imageSrc}
               userDetails={updatedUserDetails}
               closeEditMode={closeEditMode}
+              handleCoverImageChange={handleCoverImageChange}
+              coverImageSrc={coverImageSrc}
             />
           </PopUp>
         ) : (

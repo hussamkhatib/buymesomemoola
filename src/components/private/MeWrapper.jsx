@@ -28,6 +28,7 @@ function MeWrapper() {
     coverImage: '',
   });
   const [imageSrc, setImageSrc] = useState();
+  const [coverImageSrc, setCoverImageSrc] = useState();
 
   const [updatedUserDetails, setUpdatedUserDetails] = useState(userDetails);
 
@@ -52,6 +53,7 @@ function MeWrapper() {
   const closeEditMode = () => {
     setIsEdit(false);
     setImageSrc(userDetails.avatar);
+    setCoverImageSrc(userDetails.coverImage);
   };
   const openEditMode = () => {
     setIsEdit(true);
@@ -68,6 +70,16 @@ function MeWrapper() {
 
     reader.onload = function (onLoadEvent) {
       setImageSrc(onLoadEvent.target.result);
+    };
+
+    reader.readAsDataURL(changeEvent.target.files[0]);
+  };
+
+  const handleCoverImageChange = (changeEvent) => {
+    const reader = new FileReader();
+
+    reader.onload = function (onLoadEvent) {
+      setCoverImageSrc(onLoadEvent.target.result);
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
@@ -98,16 +110,42 @@ function MeWrapper() {
     setImageSrc(null);
     return data.secure_url;
   }
+  async function handleOnSubmitCoverImage(target) {
+    const form = target;
+    const fileInput = Array.from(form.elements).find(
+      ({ name }) => name === 'coverImage'
+    );
+    if (!fileInput.files.length) {
+      return false;
+    }
+    const formData = new FormData();
+
+    for (const file of fileInput.files) {
+      formData.append('file', file);
+    }
+    formData.append('upload_preset', 'buymesomemoola');
+    const data = await fetch(
+      'https://api.cloudinary.com/v1_1/dbbunxz2o/image/upload',
+      {
+        method: 'POST',
+        body: formData,
+      }
+    ).then((r) => r.json());
+
+    setCoverImageSrc(null);
+    return data.secure_url;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const secureUrl = await handleOnSubmit(e.target);
-    const newState = secureUrl
-      ? {
-          ...updatedUserDetails,
-          avatar: secureUrl,
-        }
-      : updatedUserDetails;
+    const secureUrl = (await handleOnSubmit(e.target)) || userDetails.avatar;
+    const coverImageSecureUrl =
+      (await handleOnSubmitCoverImage(e.target)) || userDetails.coverImage;
+    const newState = {
+      ...updatedUserDetails,
+      avatar: secureUrl,
+      coverImage: coverImageSecureUrl,
+    };
 
     const res = await fetch('/api/users/editprofile', {
       method: 'POST',
@@ -142,6 +180,8 @@ function MeWrapper() {
         closeEditMode={closeEditMode}
         openEditMode={openEditMode}
         isEdit={isEdit}
+        coverImageSrc={coverImageSrc}
+        handleCoverImageChange={handleCoverImageChange}
       />
     </div>
   );
