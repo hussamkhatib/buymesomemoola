@@ -2,11 +2,14 @@
 import React from 'react';
 import CreatorsCard from './CreatorsCard';
 /* eslint-disable react/prop-types */
+import { capitizeFirstLetter } from '../../util/helper';
 
-function CreatorsList({ data }) {
+function CreatorsList({ data, type }) {
+  const heading = capitizeFirstLetter(type);
   return (
-    <div>
-      <div className="max-w-5xl grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 mx-auto">
+    <div className="py-8">
+      <h3 className="text-3xl pb-5">{heading}</h3>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-12 ">
         {data.map((user) => (
           <CreatorsCard
             key={user._id}

@@ -85,7 +85,7 @@ function CreateUser() {
                 </option>
                 <option value="developer">Developer</option>
                 <option value="artist">Artist</option>
-                <option value="youtuber">Youtuber</option>
+                <option value="video creator">Video creator</option>
                 <option value="writer">Writer</option>
                 <option value="community">Community</option>
                 <option value="gaming">Gaming</option>
