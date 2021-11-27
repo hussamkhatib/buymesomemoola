@@ -12,6 +12,7 @@ function EditProfile({
   imageSrc,
   handleCoverImageChange,
   coverImageSrc,
+  letter,
 }) {
   const coverImage =
     coverImageSrc ||
@@ -55,22 +56,24 @@ function EditProfile({
                       className="hidden"
                       name="coverImage"
                       onChange={handleCoverImageChange}
-                      required
                     />
                   </label>
                 </div>
 
                 <div>
-                  <div>
-                    {imageSrc ? (
+                  {imageSrc ? (
+                    <div className="bg-neutral-focus relative text-neutral-content rounded-full w-16 h-16">
                       <Image
                         className="rounded-full"
                         src={imageSrc}
-                        height={68}
-                        width={68}
+                        layout="fill"
                       />
-                    ) : null}
-                  </div>
+                    </div>
+                  ) : (
+                    <div className="bg-neutral-focus flex justify-center text-neutral-content rounded-full w-16 h-16">
+                      <span className="text-xl self-center">{letter}</span>
+                    </div>
+                  )}
                   <label>
                     <span className="block text-sm font-medium text-gray-700 inline mt-2 border-2 border-solid">
                       Change profile picture

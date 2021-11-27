@@ -13,9 +13,12 @@ function ProfileHeader({ name, userDetails, followers }) {
         <Image layout="fill" src={src} />
       </div>
       <div className="relative z-10 -mt-16 ml-4 flex ">
-        {userDetails?.avatar ? (
-          <Avatar bg="bg-neutral-focus" src={userDetails?.avatar} size={32} />
-        ) : null}
+        <Avatar
+          bg="bg-neutral-focus"
+          src={userDetails?.avatar}
+          size={32}
+          letter={name[0].toUpperCase()}
+        />
         <div className="ml-2 text-white">
           <p
             style={{ textShadow: '4px 4px 12px rgba(0,0,0,1)' }}

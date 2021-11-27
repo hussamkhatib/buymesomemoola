@@ -92,6 +92,7 @@ function Profile({
               closeEditMode={closeEditMode}
               handleCoverImageChange={handleCoverImageChange}
               coverImageSrc={coverImageSrc}
+              letter={name[0].toUpperCase()}
             />
           </PopUp>
         ) : (
