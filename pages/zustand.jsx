@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStore, useUser } from '../src/stores/user.store';
+import TextEditor from '../src/components/posts/TextEditor';
 
 export default function Zustand() {
   const bears = useStore((state) => state.bears);
@@ -21,6 +22,8 @@ export default function Zustand() {
 
       <p>celoBalance: {celoBalance}</p>
       <p>cUSDBalance: {cUSDBalance}</p>
+
+      <TextEditor />
     </div>
   );
 }

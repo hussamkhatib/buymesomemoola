@@ -1,6 +1,6 @@
 import React from 'react';
-import Posts from '../../src/components/posts/Posts';
+import NewPost from '../../src/components/posts/NewPost';
 
 export default function NewPostsPage() {
-  return <Posts />;
+  return <NewPost />;
 }
