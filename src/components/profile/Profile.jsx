@@ -36,9 +36,14 @@ function Profile({
 }) {
   const router = useRouter();
   const kit = useUser((state) => state.kit);
+  const avatar = useUser((state) => state.avatar);
   const activeAddress = useUser((state) => state.address);
+  const activeName = useUser((state) => state.name);
   const [donateCelo, setDonateCelo] = useState(0);
   const [showSupportModal, setShowSupportModal] = useState(false);
+  const [updatedSupportersDetails, setupdatedSupportersDetails] =
+    useState(supportersDetails);
+  const [updatedSupporters, setupdatedSupporters] = useState(supporters);
 
   const transferMoola = async (e) => {
     e.preventDefault();
@@ -66,11 +71,27 @@ function Profile({
       }),
     });
     await res.json();
+    setupdatedSupportersDetails([
+      {
+        address: activeAddress,
+        avatar,
+        name: activeName,
+      },
+      ...supportersDetails,
+    ]);
+    setupdatedSupporters([
+      {
+        amount: +donateCelo,
+        hash,
+        from: activeAddress,
+        to: address,
+      },
+      ...supporters,
+    ]);
   };
 
   const handleCeloChange = (e) => {
     setDonateCelo(e.target.value);
-    console.log(e.target.value);
   };
 
   const supportModal = () => {
@@ -148,8 +169,8 @@ function Profile({
         ) : null}
         {router.pathname === '/me' ? null : (
           <RecentSupporters
-            supporters={supporters}
-            supportersDetails={supportersDetails}
+            supporters={updatedSupporters}
+            supportersDetails={updatedSupportersDetails}
             isOwner={isOwner}
           />
         )}

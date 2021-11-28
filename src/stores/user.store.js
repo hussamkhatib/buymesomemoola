@@ -16,6 +16,7 @@ export const useStore = create((set) => ({
 export const useUser = create((set) => ({
   address: null,
   name: null,
+  avatar: null,
   followers: 0,
   contract: null,
   kit: null,
@@ -54,7 +55,11 @@ export const useUser = create((set) => ({
         const { data } = await res.json();
         // handle error
         if (data) {
-          set({ name: data.userDetails.name, followers: data.followers });
+          set({
+            name: data.userDetails.name,
+            followers: data.followers,
+            avatar: data.userDetails.avatar,
+          });
         } else set({ isRegisteredUser: true });
       } catch (error) {
         set({ error: `⚠️ ${error}.` });
