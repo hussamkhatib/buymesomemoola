@@ -8,6 +8,7 @@ module.exports = {
       },
       padding: {
         twenty: '20%',
+        fifty: '50%',
       },
       height: {
         hero: '32rem',

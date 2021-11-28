@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { add3Dots } from '../../util/helper';
 
-function PostCard({ title, content }) {
+function PostCard({ title, content, id }) {
   const temp = content.replace(/<[^>]+>/g, '');
   const postContent = add3Dots(temp, 120);
   return (
@@ -20,9 +22,9 @@ function PostCard({ title, content }) {
           <h2 className="card-title">{title}</h2>
           <p>{postContent}</p>
           <div className="card-actions">
-            <button type="button" className="btn btn-primary">
-              Read More
-            </button>
+            <Link href={`/posts/${id}`}>
+              <a className="btn btn-primary">Read More</a>
+            </Link>
           </div>
         </div>
       </div>
