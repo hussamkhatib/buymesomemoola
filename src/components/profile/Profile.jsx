@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import ProfileBio from './ProfileBio';
 import ProfileHeader from './ProfileHeader';
 import Edit from '../icons/Edit';
@@ -29,6 +30,7 @@ function Profile({
   handleCoverImageChange,
   coverImageSrc,
 }) {
+  const router = useRouter();
   const kit = useUser((state) => state.kit);
   const activeAddress = useUser((state) => state.address);
   const [donateCelo, setDonateCelo] = useState(0);
@@ -123,10 +125,12 @@ function Profile({
             donateCelo={donateCelo}
           />
         ) : null}
-        <RecentSupporters
-          supporters={supporters}
-          supportersDetails={supportersDetails}
-        />
+        {router.pathname === '/me' ? null : (
+          <RecentSupporters
+            supporters={supporters}
+            supportersDetails={supportersDetails}
+          />
+        )}
       </div>
     </div>
   );
