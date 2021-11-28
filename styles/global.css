@@ -5,3 +5,9 @@
 body {
   min-height: 100vh;
 }
+h2 {
+  font-size: 1.5em;
+}
+li {
+  list-style-type: disc;
+}

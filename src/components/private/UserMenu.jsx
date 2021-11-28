@@ -28,7 +28,7 @@ function UserMenu() {
       {navBarList.map((item) => (
         <li
           key={item.key}
-          className={`p-2 font-semibold ${
+          className={`p-2 font-semibold list-none ${
             router.pathname === item.route
               ? 'bg-accent rounded text-accent-content'
               : ''
