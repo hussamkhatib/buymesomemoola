@@ -62,7 +62,7 @@ function Profile({
         senderAddress: activeAddress,
         receiverAddress: address,
         transactionHash: hash,
-        amount: donateCelo,
+        amount: +donateCelo,
       }),
     });
     await res.json();
@@ -70,6 +70,7 @@ function Profile({
 
   const handleCeloChange = (e) => {
     setDonateCelo(e.target.value);
+    console.log(e.target.value);
   };
 
   const supportModal = () => {
@@ -84,7 +85,7 @@ function Profile({
   if (!activeAddress) return <div>loading...</div>;
   return (
     <div className="pb-20">
-      <div className="block flex justify-end">
+      <div className="flex justify-end">
         {isEdit ? (
           <PopUp>
             <EditProfile
