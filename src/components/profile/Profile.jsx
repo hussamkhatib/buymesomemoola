@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ProfileBio from './ProfileBio';
 import ProfileHeader from './ProfileHeader';
@@ -10,6 +12,7 @@ import SupportBtn from '../actionButtons/SupportBtn';
 import SupportCeloModal from '../modals/SupportCeloModal';
 import { useUser } from '../../stores/user.store';
 import RecentSupporters from './RecentSupporters';
+import ExternalLink from '../icons/ExternalLink';
 
 function Profile({
   userDetails,
@@ -100,9 +103,16 @@ function Profile({
         ) : (
           <>
             {!isReadOnly ? (
-              <button onClick={() => openEditMode()} type="button">
-                <Edit />
-              </button>
+              <>
+                <Link href={`/${name}`}>
+                  <a className="btn mr-2">
+                    View Profile <ExternalLink />
+                  </a>
+                </Link>
+                <button onClick={() => openEditMode()} type="button">
+                  <Edit />
+                </button>
+              </>
             ) : null}
           </>
         )}
