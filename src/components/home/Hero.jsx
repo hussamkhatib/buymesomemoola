@@ -9,8 +9,7 @@ function Hero() {
         A supporter is worth a thousand followers.
       </h3>
       <p className="text-secondary-content md:text-lg lg:text-2xl text-center pb-4 md:pb-7 lg:pb-10">
-        Accept donations. Start a membership. Sell anything you like. It’s
-        easier than you think.
+        Earn some Moola as a creator. No hidden fees whatsoever
       </p>
       {address ? (
         <p className="btn btn-primary w-96 mb-2">{address} connected</p>
