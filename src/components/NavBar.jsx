@@ -3,13 +3,11 @@
 /* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useUser } from '../stores/user.store';
 import CreateUser from './CreateUser';
 import Celo from './icons/Celo';
 
 function NavBar() {
-  const router = useRouter();
   const address = useUser((state) => state.address);
   const isRegisteredUser = useUser((state) => state.isRegisteredUser);
   const connectCeloWallet = useUser((state) => state.connectCeloWallet);
@@ -35,8 +33,7 @@ function NavBar() {
             <a className="text-sm md:text-base ml-6">Explore creators</a>
           </Link>
         </div>
-        {address &&
-        (router.pathname === '/' || router.pathname === '/explore-creators') ? (
+        {address ? (
           <Link href="/dashboard">
             <a className="bg-base-300 hover:bg-base-200 text-primary-content px-4 py-2 font-semibold">
               Dashboard

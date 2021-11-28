@@ -51,8 +51,6 @@ function Profile({
     });
 
     const hash = await tx.getHash();
-    const receipt = await tx.waitReceipt();
-    console.log({ hash, receipt });
     setShowSupportModal(false);
 
     const res = await fetch('/api/users/transfereth', {
