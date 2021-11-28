@@ -14,6 +14,11 @@ const navBarList = [
     title: 'My Profile',
     route: '/me',
   },
+  {
+    key: 2,
+    title: 'My Posts',
+    route: '/posts',
+  },
 ];
 
 function UserMenu() {
