@@ -3,12 +3,10 @@ import Image from 'next/image';
 
 /* eslint-disable react/prop-types */
 
-function Avatar({ letter, bg, size, src }) {
+function Avatar({ letter, bg, src }) {
   return (
     <div className="avatar placeholder">
-      <div
-        className={`${bg} text-neutral-content rounded-full w-${size} h-${size}`}
-      >
+      <div className={`${bg} text-neutral-content rounded-full w-32 h-32`}>
         {src ? (
           <Image src={src} layout="fill" className="rounded-full" />
         ) : (

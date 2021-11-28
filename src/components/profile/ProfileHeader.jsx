@@ -16,7 +16,6 @@ function ProfileHeader({ name, userDetails, followers }) {
         <Avatar
           bg="bg-neutral-focus"
           src={userDetails?.avatar}
-          size={32}
           letter={name[0].toUpperCase()}
         />
         <div className="ml-2 text-white">
