@@ -1,3 +1,13 @@
+## About
+
+**Buymesomemoola** give creators a simple way to get paid and connect with their fans.
+Fans can use celo cryptocurrencies to support their favorite creators.
+
+Buy Me Some Moola gives fans a meaningful way to engage with their fans with options like sharing posts, describing their work.
+
+Creators get to track their earnings and see how many many people are supporting them.
+There is no hidden fees, 100% of the amount is transferred to their celo wallet.
+
 ## Installation
 
 Clone the project
@@ -40,3 +50,4 @@ npm run dev
 - DaisyUI
 - vercel
 - zustand
+- cloudinary
