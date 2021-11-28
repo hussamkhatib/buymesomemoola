@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
@@ -124,8 +125,17 @@ function Profile({
         isEdit={isEdit}
       />
       <ProfileBio bio={userDetails?.bio} isEdit={isEdit} />
-      <div className="p-4">
-        {isOwner ? null : <SupportBtn supportModal={supportModal} />}
+      <div className="p-4 flex">
+        {isOwner ? null : (
+          <div className="mr-3">
+            <SupportBtn supportModal={supportModal} />
+          </div>
+        )}
+        <Link href="/">
+          <a className="btn btn-primary">Posts</a>
+        </Link>
+      </div>
+      <div>
         {showSupportModal ? (
           <SupportCeloModal
             closeSupportModal={closeSupportModal}

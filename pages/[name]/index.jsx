@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import connectToDatabase from '../lib/mongodb';
-
-import Profile from '../src/components/profile/Profile';
 /* eslint-disable react/prop-types */
+
+import React from 'react';
+import connectToDatabase from '../../lib/mongodb';
+
+import Profile from '../../src/components/profile/Profile';
 
 export default function User({
   name,
