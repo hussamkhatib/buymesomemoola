@@ -151,6 +151,7 @@ function Profile({
           <RecentSupporters
             supporters={supporters}
             supportersDetails={supportersDetails}
+            isOwner={isOwner}
           />
         )}
       </div>

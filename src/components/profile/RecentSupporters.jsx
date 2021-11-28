@@ -3,14 +3,16 @@ import React from 'react';
 import RecentSupportersCard from './RecentSupportersCard';
 import { isArrayEmpty } from '../../util/helper';
 
-function RecentSupporters({ supporters, supportersDetails }) {
+function RecentSupporters({ supporters, supportersDetails, isOwner }) {
   const addresses = supportersDetails?.map((s) => s.address);
   return (
     <div className="py-8">
       <h3 className="text-3xl pb-10">Recent Supporters</h3>
       {isArrayEmpty(supporters) ? (
         <p className="bg-base-200 p-4 rounded text-xl">
-          Be the the first one to support!
+          {isOwner
+            ? 'No one has supported you yet!'
+            : 'Be the the first one to support!'}
         </p>
       ) : (
         supporters?.map((supporter) => {
