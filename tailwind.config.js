@@ -6,6 +6,9 @@ module.exports = {
       gridTemplateRows: {
         layout: 'max-content 1fr max-content',
       },
+      padding: {
+        twenty: '20%',
+      },
       height: {
         hero: '32rem',
         creatorCard: 'calc(100% - 200px)',
