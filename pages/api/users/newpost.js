@@ -1,4 +1,5 @@
 /* eslint-disable consistent-return */
+import { ObjectId } from 'mongodb';
 import connectToDatabase from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
@@ -14,7 +15,7 @@ export default async function handler(req, res) {
       { address },
       {
         $push: {
-          post,
+          post: { ...post, _id: new ObjectId() },
         },
       }
     );
