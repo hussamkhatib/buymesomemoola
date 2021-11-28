@@ -4,7 +4,7 @@ import PostCard from './PostCard';
 
 function PostList({ posts }) {
   return (
-    <div className="py-8">
+    <div className="py-8 grid auto-rows-fr">
       {posts.map((post) => (
         <PostCard key={post.title} title={post.title} content={post.content} />
       ))}
