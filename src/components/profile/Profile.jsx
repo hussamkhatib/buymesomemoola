@@ -131,9 +131,11 @@ function Profile({
             <SupportBtn supportModal={supportModal} />
           </div>
         )}
-        <Link href="/">
-          <a className="btn btn-primary">Posts</a>
-        </Link>
+        {router.pathname === '/me' ? null : (
+          <Link href={`/${name}/posts`}>
+            <a className="btn btn-primary">Posts</a>
+          </Link>
+        )}
       </div>
       <div>
         {showSupportModal ? (
