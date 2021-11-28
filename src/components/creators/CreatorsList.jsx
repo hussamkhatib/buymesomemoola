@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import CreatorsCard from './CreatorsCard';
-/* eslint-disable react/prop-types */
 import { capitizeFirstLetter } from '../../util/helper';
 
 function CreatorsList({ data, type }) {
