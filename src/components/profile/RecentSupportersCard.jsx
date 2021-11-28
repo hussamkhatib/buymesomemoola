@@ -8,7 +8,18 @@ import ExternalLink from '../icons/ExternalLink';
 function RecentSupportersCard({ hash, celo, avatar, name }) {
   return (
     <div className="flex mb-6 bg-base-200 p-4 rounded flex">
-      <Image src={avatar} width={64} height={64} className="rounded-full" />
+      <div className="h-16 w-16 relative">
+        {avatar ? (
+          <Image src={avatar} layout="fill" className="rounded-full" />
+        ) : (
+          <div className=" bg-neutral-focus rounded-full flex justify-center h-full text-xl text-neutral-content self-center">
+            <span className="self-center text-2xl">
+              {name[0].toUpperCase()}
+            </span>
+          </div>
+        )}
+      </div>
+
       <div className="pl-4  flex flex-col">
         <p className="text-2xl">
           {name} donated {celo} M<Celo size={20} />
