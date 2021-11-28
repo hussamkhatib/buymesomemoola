@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NoPosts from './NoPosts';
 import { useUser } from '../../stores/user.store';
+import { isArrayEmpty } from '../../util/helper';
 import PostList from './PostList';
 
 function Posts() {
   const address = useUser((state) => state.address);
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -18,15 +20,19 @@ function Posts() {
         },
       });
       const { data, error } = await res.json();
+      console.log({ data, error });
       if (data) {
         setPosts(data.post);
+        setIsLoading(false);
       } else if (error) {
         console.log({ error });
+        setIsLoading(false);
       }
     };
     if (address) getPosts();
   }, []);
 
+  if (isLoading) return <div>loading ... </div>;
   return (
     <div>
       <div className="block flex justify-end">
@@ -34,8 +40,7 @@ function Posts() {
           <a className="btn btn-primary">Write a Post</a>
         </Link>
       </div>
-      <PostList posts={posts} />
-      {/* <NoPosts /> */}
+      {isArrayEmpty(posts) || !posts ? <NoPosts /> : <PostList posts={posts} />}
     </div>
   );
 }
