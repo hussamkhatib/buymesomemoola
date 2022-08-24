@@ -17,7 +17,7 @@ const navBarList = [
   {
     key: 2,
     title: 'My Posts',
-    route: '/posts',
+    route: '/me/posts',
   },
 ];
 

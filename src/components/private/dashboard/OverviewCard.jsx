@@ -7,7 +7,6 @@ function OverviewCard({ title, count }) {
       <div className="stat">
         <div className="stat-title">{title}</div>
         <div className="stat-value text-primary">{count}</div>
-        {/* <div className="stat-desc">{stat}</div> */}
       </div>
     </div>
   );

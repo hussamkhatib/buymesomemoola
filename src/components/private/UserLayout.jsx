@@ -1,22 +1,17 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
-import Nav from '../NavBar';
 import UserMenu from './UserMenu';
-import RouteGuard from '../RouteGuard';
 
 function UserLayout({ children }) {
   return (
     <div className="">
-      <Nav />
-      <RouteGuard>
-        <div className="max-w-6xl mx-auto py-8 flex flex-col md:flex-row">
-          <div>
-            <UserMenu />
-          </div>
-          <div className="px-4 md:px-8 w-full">{children}</div>
+      <div className="max-w-6xl mx-auto py-8 flex flex-col md:flex-row">
+        <div>
+          <UserMenu />
         </div>
-      </RouteGuard>
+        <div className="px-4 md:px-8 w-full">{children}</div>
+      </div>
       <ToastContainer
         autoClose={5000}
         closeOnClick

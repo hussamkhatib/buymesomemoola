@@ -1,21 +1,16 @@
-/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable camelcase */
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { useUser } from '../stores/user.store';
-import CreateUser from './CreateUser';
-import Celo from './icons/Celo';
+import { useAtom } from 'jotai';
+import CeloIcon from './CeloIcon';
+import useConnectWallet from '../useConnect';
+import { userAtom } from '../atom';
+import Modal from './Modal';
+import CreateUserForm from './CreateUserForm';
 
 function NavBar() {
-  const address = useUser((state) => state.address);
-  const isRegisteredUser = useUser((state) => state.isRegisteredUser);
-  const connectCeloWallet = useUser((state) => state.connectCeloWallet);
-
-  useEffect(() => {
-    connectCeloWallet();
-  }, []);
-
+  const { connect, disconnect } = useConnectWallet();
+  const [user] = useAtom(userAtom);
   return (
     <>
       <nav className="navbar shadow-lg bg-neutral text-neutral-content ">
@@ -24,7 +19,7 @@ function NavBar() {
             <a>
               <h1 className="text-lg md:text-2xl font-semibold ">
                 Buy Me Some M
-                <Celo size={18} />
+                <CeloIcon size={18} />
                 la
               </h1>
             </a>
@@ -33,27 +28,41 @@ function NavBar() {
             <a className="text-sm md:text-base ml-6">Explore creators</a>
           </Link>
         </div>
-        {address ? (
-          <Link href="/dashboard">
-            <a className="bg-base-300 hover:bg-base-200 text-primary-content px-4 py-2 font-semibold">
-              Dashboard
-            </a>
-          </Link>
-        ) : address ? null : (
+        {user.address ? (
+          <button
+            onClick={() => disconnect()}
+            type="button"
+            className="bg-base-300 hover:bg-base-200 text-primary-content px-4 py-2 font-semibold"
+          >
+            Disconnect
+          </button>
+        ) : (
           <div className="flex-none">
             <button
-              onClick={connectCeloWallet}
+              onClick={() => connect()}
               type="button"
               className="bg-base-300 hover:bg-base-200 text-primary-content px-4 py-2 font-semibold"
             >
-              connect
+              Connect
             </button>
           </div>
         )}
       </nav>
-      {isRegisteredUser ? <CreateUser /> : null}
+      {user.address && !user?.name ? <CreateUser /> : null}
     </>
   );
 }
 
 export default NavBar;
+
+function CreateUser() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return (
+    <Modal
+      title="Create your page"
+      main={<CreateUserForm setIsOpen={setIsOpen} />}
+      state={{ isOpen, setIsOpen }}
+    />
+  );
+}
